@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
-@theme { 
-    --color-brand-50: #e9f5ff;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+ --color-brand-50: #e9f5ff;
     --color-brand-100: #cee9ff;
     --color-brand-500: #0081ff;
     --color-brand-600: #003087;
@@ -17,57 +19,40 @@
     --color-surface: #F9FAFB;
     --color-line: #E5E7EB;
 
-    --font-display: "Be Vietnam Pro", system-ui, sans-serif;
-    --font-body: "Inter", system-ui, sans-serif;
-    --radius-card: 1rem;
-}
 
-@layer base {
-    html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 5rem;
-    }
-    body {
-        @apply bg-surface text-ink font-body antialiased;
-    }
-    h1, h2, h3 {
-        @apply font-display tracking-tight;
-    }
-    h1 { @apply text-5xl font-bold; }
-    h2 { @apply text-4xl font-bold; }
-    h3 { @apply text-3xl font-semibold; }
 
-    :focus-visible {
-        @apply outline-2 outline-offset-2 outline-brand-600;
-    }
+  --font-display: "Be Vietnam Pro", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --radius-card: 1rem;
 }
 
 @layer components {
-    .section {
-        @apply mx-auto w-full max-w-6xl px-5 py-24;
-    }
-    /* Sửa rounded-card thành rounded-2xl hoặc rounded-[1rem] để CLI v4 nhận diện chuẩn */
-    .card {
-        @apply rounded-2xl border border-line bg-white p-6 shadow-sm;
-    }
-    /* Thêm lại class .ticket cho khung Báo cáo tháng 8 bên phải */
-    .ticket {
-        @apply rounded-2xl border border-line bg-white p-6 shadow-xl max-w-sm w-full;
-    }
-    /* Thêm class .eyebrow cho cái nhãn nhỏ màu xanh */
-    .eyebrow {
-        @apply inline-block rounded-full bg-brand-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-brand-600;
-    }
-    .btn {
-        @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5
-               text-sm font-semibold transition-colors duration-150
-               disabled:cursor-not-allowed disabled:opacity-50;
-    }
-    .btn-primary { @apply bg-brand-600 text-white hover:bg-brand-900; }
-    .btn-ghost   { @apply border border-line text-ink hover:bg-slate-100; }
-    .btn-lg      { @apply px-7 py-3.5 text-base; }
+  .section {
+    @apply mx-auto w-full max-w-6xl px-5 py-20 lg:py-28;
+  }
+  
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors cursor-pointer;
+  }
+  
+  .btn-primary {
+    @apply bg-brand-600 text-white hover:bg-brand-700;
+  }
+  
+  .btn-ghost {
+    @apply border border-line bg-white text-ink hover:bg-slate-50;
+  }
+  
+  .btn-lg {
+    @apply px-6 py-3.5 text-base;
+  }
 
-    .badge {
-        @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
-    }
+  .card {
+    @apply rounded-2xl border border-line bg-surface p-6 sm:p-8 shadow-sm;
+  }
+
+  .eyebrow {
+    @apply font-display text-xs font-bold uppercase tracking-wider text-brand-600;
+  }
 }

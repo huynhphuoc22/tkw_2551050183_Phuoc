@@ -1,11 +1,11 @@
 {
   "name": "tkw_2551050183_phuoc",
   "version": "1.0.0",
-  "description": "",
+  "description": "Website giới thiệu ứng dụng VíThôngMinh",
   "main": "index.js",
   "scripts": {
     "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
-    "test":"echo\"Error:no test specified\"&& exit 1"
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
   },
   "keywords": [],
   "author": "",
