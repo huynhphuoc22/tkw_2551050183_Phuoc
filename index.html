@@ -181,31 +181,29 @@ ip
 
 
     <!--5.SECTION SỐ LIỆU -->
-    <section id="so-lieu" class="border-y border-line bg-brand-600 py-16 text-white" aria-labelledby="solieu-title">
-      <div class="mx-auto max-w-6xl px-5">
-        <h2 id="solieu-title" class="sr-only">Số liệu ấn tượng</h2>
-        <dl class="grid grid-cols-2 gap-8 text-center md:grid-cols-4">
-          <div>
-            <dt class="text-sm text-brand-100">Người dùng tin tưởng</dt>
-            <dd class="mt-2 font-display text-4xl font-extrabold sm:text-5xl">50.000+</dd>
-          </div>
-          <div>
-            <dt class="text-sm text-brand-100">Giao dịch được ghi chép</dt>
-            <dd class="mt-2 font-display text-4xl font-extrabold sm:text-5xl">2.5M+</dd>
-          </div>
-          <div>
-            <dt class="text-sm text-brand-100">Tiết kiệm trung bình/tháng</dt>
-            <dd class="mt-2 font-display text-4xl font-extrabold sm:text-5xl">18%</dd>
-          </div>
-          <div>
-            <dt class="text-sm text-brand-100">Đánh giá hài lòng</dt>
-            <dd class="mt-2 font-display text-4xl font-extrabold sm:text-5xl">4.9/5</dd>
-          </div>
-        </dl>
+    <section id="so-lieu" class="bg-brand-600 py-20 text-white" aria-labelledby="solieu-title">
+  <div class="section py-0! mx-auto max-w-6xl px-5">
+    <h2 id="solieu-title" class="sr-only">Số liệu ấn tượng</h2>
+    <dl class="grid grid-cols-2 gap-8 text-center md:grid-cols-4">
+      <div class="flex flex-col">
+        <dt class="order-2 mt-2 text-sm text-brand-100">Người dùng tin tưởng</dt>
+        <dd class="font-display text-4xl font-extrabold sm:text-5xl">50.000+</dd>
       </div>
-    </section>
-
-
+      <div class="flex flex-col">
+        <dt class="order-2 mt-2 text-sm text-brand-100">Giao dịch ghi chép</dt>
+        <dd class="font-display text-4xl font-extrabold sm:text-5xl">2.5M+</dd>
+      </div>
+      <div class="flex flex-col">
+        <dt class="order-2 mt-2 text-sm text-brand-100">Tiết kiệm trung bình</dt>
+        <dd class="font-display text-4xl font-extrabold sm:text-5xl">18%</dd>
+      </div>
+      <div class="flex flex-col">
+        <dt class="order-2 mt-2 text-sm text-brand-100">Đánh giá hài lòng</dt>
+        <dd class="font-display text-4xl font-extrabold sm:text-5xl">4.9/5</dd>
+      </div>
+    </dl>
+  </div>
+</section>
     <!-- 6.SECTION CẢM NHẬN -->
     <section id="cam-nhan" class="section" aria-labelledby="camnhan-title">
       <div class="mx-auto max-w-2xl text-center">
@@ -216,46 +214,77 @@ ip
       </div>
 
       <ul class="mt-12 grid gap-8 md:grid-cols-2">
-        <li class="card">
-          <p class="italic text-muted">"Từ ngày dùng ứng dụng, vợ chồng mình không còn tranh cãi về khoản tiền sinh hoạt cuối tháng. Việc chia tiền vào từng hũ tài chính cực kỳ rõ ràng!"</p>
-          <div class="mt-6 flex items-center gap-3">
-            <div class="grid h-10 w-10 place-items-center rounded-full bg-brand-100 font-bold text-brand-700">NT</div>
-            <div>
-              <p class="font-bold text-ink">Nguyễn Thanh B</p>
-              <p class="text-xs text-muted">Nội trợ · TP. Hồ Chí Minh</p>
-            </div>
-          </div>
-        </li>
+<li class="card">
+  <figure>
+    <blockquote class="italic text-muted leading-relaxed">
+      "Từ ngày dùng ứng dụng, vợ chồng mình không còn tranh cãi về khoản tiền sinh hoạt cuối tháng. Việc chia tiền vào từng hũ tài chính cực kỳ rõ ràng!"
+    </blockquote>
+    <figcaption class="mt-6 flex items-center gap-3">
+      <div class="grid h-10 w-10 place-items-center rounded-full bg-brand-100 font-bold text-brand-700" aria-hidden="true">NT</div>
+      <div>
+        <p class="font-bold text-ink">Nguyễn Thanh B</p>
+        <cite class="text-xs not-italic text-muted">Nội trợ · TP. Hồ Chí Minh</cite>
+      </div>
+    </figcaption>
+  </figure>
+</li>
+
         <li class="card">
           <p class="italic text-muted">"Giao diện đơn giản, nhập khoản chi chỉ mất vài giây. Rất phù hợp với sinh viên ở ghép cần gom tiền nhà và chia chi phí ăn uống sòng phẳng."</p>
           <div class="mt-6 flex items-center gap-3">
             <div class="grid h-10 w-10 place-items-center rounded-full bg-brand-100 font-bold text-brand-700">HD</div>
             <div>
               <p class="font-bold text-ink">Pham Huỳnh Phước</p>
-              <p class="text-xs text-muted">Sinh viên đại học</p>
+              <cite class="text-xs text-muted">Sinh viên đại học</cite>
             </div>
-          </div>
+          </figure>
         </li>
       </ul>
     </section>
 
 
     <!-- 7. SECTION BẢNG GIÁ -->
-    <section id="bang-gia" class="border-y border-line bg-slate-50/70 py-20" aria-labelledby="gia-title">
+    <!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Bảng giá — Phần mềm quản lý chi tiêu gia đình & cá nhân</title>
+  <meta name="description" content="Nắm rõ mọi khoản thu chi, tối ưu ngân sách gia đình và cá nhân, đưa ra phương án tài chính thông minh hơn mỗi ngày." />
+
+  <!-- Font chữ từ Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Kết nối tới file CSS sau khi build -->
+  <link rel="stylesheet" href="./dist/output.css" />
+</head>
+
+<body class="bg-surface font-body text-ink antialiased">
+
+  
+  <a href="#main" class="btn btn-primary sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50">
+    Bỏ qua đến nội dung chính
+  </a>
+
+    <!-- 7. SECTION BẢNG GIÁ -->
+    <section class ="section" id="bang-gia" class="border-y border-line bg-slate-50/70 py-20" aria-labelledby="gia-title">
       <div class="mx-auto max-w-6xl px-5">
         <div class="mx-auto max-w-2xl text-center">
-          <p class="eyebrow">Bảng giá minh bạch</p>
-          <h2 id="gia-title" class="mt-3 font-display text-3xl font-extrabold text-ink sm:text-4xl">
+          <p class="mt-4  text-2xl font-extrabold sm:text-2xl eyebrow">Bảng giá minh bạch</p>
+          <h1 id="gia-title" class="mt-4  text-4xl font-extrabold text-ink sm:text-4xl ">
             Lựa chọn gói phù hợp với nhu cầu
-          </h2>
-          <p class="mt-2 text-muted">Miễn phí vĩnh viễn cho cá nhân. Nâng cấp để dùng thêm tính năng gia đình và nhóm.</p>
+          </h1>
+          <p class="mt-4 text-lg text-muted">Miễn phí vĩnh viễn cho cá nhân. Nâng cấp để dùng thêm tính năng gia đình và nhóm.</p>
         </div>
 
-        <ul class="mt-12 grid gap-8 md:grid-cols-3">
-          <li class="card flex flex-col justify-between">
-            <div>
+        <ul class="mt-14 grid items-stretch gap-6 md:grid-cols-3 ">
+          <li class="card flex h-full flex-col justify-between ">
+            <div class=" flex-1 flex flex-col">
               <h3 class="font-display text-xl font-bold text-ink">Cá nhân</h3>
-              <p class="mt-1 text-xs text-muted">Dành cho người mới bắt đầu.</p>
+              <p class="mt-1 text-sm text-muted">Dành cho người mới bắt đầu.</p>
               <p class="mt-6 font-display text-4xl font-extrabold text-ink">Miễn phí<span class="text-sm font-normal text-muted">/trọn đời</span></p>
               <ul class="mt-6 space-y-3 text-sm text-muted">
                 <li>✔ 1 tài khoản cá nhân</li>
@@ -263,27 +292,26 @@ ip
                 <li>✔ Báo cáo cơ bản hàng tháng</li>
               </ul>
             </div>
-            <a href="#cta" class="btn btn-ghost mt-8 w-full">Bắt đầu ngay</a>
+            <a href="#cta" class="btn btn-primary mt-8 w-full">Đăng kí ngay</a>
           </li>
 
-          <li class="card relative flex flex-col justify-between border-2 border-brand-600 shadow-lg">
-            <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-brand-600 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">Phổ biến nhất</span>
-            <div>
+          <li class="card flex h-full flex-col justify-between">
+            <div class=" flex-1 flex flex-col ">
               <h3 class="font-display text-xl font-bold text-ink">Gia đình</h3>
               <p class="mt-1 text-xs text-muted">Dành cho vợ chồng cùng quản lý.</p>
-              <p class="mt-6 font-display text-4xl font-extrabold text-brand-600">49.000 ₫<span class="text-sm font-normal text-muted">/tháng</span></p>
+              <p class="mt-6 font-display text-4xl font-extrabold">49.000 ₫<span class="text-sm font-normal text-muted">/tháng</span></p>
               <ul class="mt-6 space-y-3 text-sm text-muted">
-                <li>✔ Tối đa 6 thành viên</li>
+                <li>✔ Tối đa 10 thành viên</li>
                 <li>✔ Tạo nhiều Ví chung/Ví riêng</li>
                 <li>✔ Cảnh báo vượt hạn mức thông minh</li>
                 <li>✔ Xuất báo cáo chi tiết Excel/PDF</li>
               </ul>
             </div>
-            <a href="#cta" class="btn btn-primary mt-8 w-full">Dùng thử 14 ngày</a>
+            <a href="#cta" class="btn btn-primary mt-8 w-full">Dùng thử 7 ngày</a>
           </li>
 
-          <li class="card flex flex-col justify-between">
-            <div>
+          <li class="card flex h-full flex-col justify-between">
+            <div class=" flex-1 flex flex-col">
               <h3 class="font-display text-xl font-bold text-ink">Nhóm & Cửa hàng</h3>
               <p class="mt-1 text-xs text-muted">Dành cho nhóm bạn đi chơi/kinh doanh.</p>
               <p class="mt-6 font-display text-4xl font-extrabold text-ink">99.000 ₫<span class="text-sm font-normal text-muted">/tháng</span></p>
@@ -294,12 +322,11 @@ ip
                 <li>✔ Hỗ trợ ưu tiên 24/7</li>
               </ul>
             </div>
-            <a href="#cta" class="btn btn-ghost mt-8 w-full">Đăng ký ngay</a>
+            <a href="#cta" class="btn btn-primary mt-8 w-full">Đăng ký ngay</a>
           </li>
         </ul>
       </div>
     </section>
-
 
     <!-- 8. SECTION CÂU HỎI THƯỜNG GẶP -->
     <section id="cau-hoi" class="section" aria-labelledby="faq-title">
@@ -325,7 +352,38 @@ ip
         </div>
       </dl>
     </section>
-
+<!-- SECTION MỚI KHÔNG CÓ TRONG FIGMA-->
+<section id="huong-dan" class="section border-t border-line" aria-labelledby="huong-dan-title">
+  <div class="mx-auto max-w-2xl text-center">
+    <p class="eyebrow">Khởi đầu dễ dàng</p>
+    <h2 id="huong-dan-title" class="mt-3 font-display text-3xl font-extrabold text-ink sm:text-4xl">
+      3 bước để làm chủ tài chính
+    </h2>
+  </div>
+  <ol class="mt-12 grid gap-8 md:grid-cols-3">
+    <li class="relative">
+      <span class="font-display text-6xl font-black text-slate-100 absolute -top-6 -left-2 z-0" aria-hidden="true">01</span>
+      <div class="relative z-10">
+        <h3 class="font-display text-xl font-bold text-brand-600">Tải ứng dụng</h3>
+        <p class="mt-2 text-muted text-sm">Cài đặt VíThôngMinh miễn phí trên App Store hoặc Google Play chỉ trong 1 phút.</p>
+      </div>
+    </li>
+    <li class="relative">
+      <span class="font-display text-6xl font-black text-slate-100 absolute -top-6 -left-2 z-0" aria-hidden="true">02</span>
+      <div class="relative z-10">
+        <h3 class="font-display text-xl font-bold text-brand-600">Thiết lập ví</h3>
+        <p class="mt-2 text-muted text-sm">Tạo các hũ chi tiêu: Tiền chợ, Tiền học, Tiết kiệm... theo nhu cầu cá nhân.</p>
+      </div>
+    </li>
+    <li class="relative">
+      <span class="font-display text-6xl font-black text-slate-100 absolute -top-6 -left-2 z-0" aria-hidden="true">03</span>
+      <div class="relative z-10">
+        <h3 class="font-display text-xl font-bold text-brand-600">Ghi chép & Tối ưu</h3>
+        <p class="mt-2 text-muted text-sm">Nhập khoản chi ngay khi phát sinh. Ứng dụng sẽ cảnh báo nếu bạn chi tiêu quá đà.</p>
+      </div>
+    </li>
+  </ol>
+</section>
 
     <!-- 9.SECTION CALL TO ACTION -->
     <section id="cta" class="section" aria-labelledby="cta-title">
@@ -349,9 +407,12 @@ ip
   <!-- 10. SECTION FOOTER SECTION -->
   <footer class="border-t border-line bg-white py-12 text-sm text-muted">
     <div class="mx-auto max-w-6xl px-5 text-center">
-      <p></p>
+      <p>@PHẠM HUỲNH PHƯỚC ĐẠI HỌC MỞ.</p>
     </div>
   </footer>
 
 </body>
 </html>
+
+
+
