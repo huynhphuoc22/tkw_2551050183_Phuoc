@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
- --color-brand-50: #e9f5ff;
+    --color-brand-50: #e9f5ff;
     --color-brand-100: #cee9ff;
     --color-brand-500: #0081ff;
     --color-brand-600: #003087;
@@ -18,8 +18,11 @@
     --color-muted: #6B7280;
     --color-surface: #F9FAFB;
     --color-line: #E5E7EB;
-
-
+/* dark mode */
+     --color-ink-invert: #eaf2ee;
+    --color-line-invert: #24403a;
+    --color-surface-dark: #0e1c19; 
+    --color-surface-dark-alt: #162924;
 
   --font-display: "Be Vietnam Pro", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
@@ -54,5 +57,21 @@
 
   .eyebrow {
     @apply font-display text-xs font-bold uppercase tracking-wider text-brand-600;
+  }
+  /* Tối ưu Card cho Dark Mode  */
+  .card {
+    @apply rounded-2xl border border-line bg-surface p-6 sm:p-8 shadow-sm transition-all;
+    @apply dark:border-line-invert dark:bg-surface-dark-alt;
+  }
+
+  /* Component cho contact form */
+  .field-label {
+    @apply block text-sm font-semibold text-ink dark:text-ink-invert;
+  }
+
+  .field-input {
+    @apply mt-1.5 w-full rounded-lg border border-line bg-white px-4 py-2.5 text-sm outline-none 
+           transition-all focus:ring-2 focus:ring-brand-600 
+           dark:border-line-invert dark:bg-slate-900 dark:text-white;
   }
 }
