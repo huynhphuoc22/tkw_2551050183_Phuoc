@@ -2,26 +2,21 @@ export function initNav() {
   const toggle = document.querySelector('[aria-controls="nav-mobile"]');
   const menu = document.getElementById("nav-mobile");
   
-  // Kiểm tra sự tồn tại để tránh lỗi null [2, 5]
-  if (!toggle || !menu) return;
+  if (!toggle || !menu) return; [5]
 
   function setOpen(open) {
-    // Hiển thị/ẩn menu
     menu.classList.toggle("hidden", !open);
-    // Cập nhật trạng thái ARIA cho trình đọc màn hình [4, 5]
-    toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "Đóng menu" : "Mở menu");
-    // Chặn cuộn nền trên điện thoại [4]
-    document.body.classList.toggle("overflow-hidden", open);
+    toggle.setAttribute("aria-expanded", String(open)); [6]
+    toggle.setAttribute("aria-label", open ? "Đóng menu" : "Mở menu"); [6]
+    document.body.classList.toggle("overflow-hidden", open); [7]
   }
 
-  // Lắng nghe sự kiện click (thay thế hoàn toàn onclick trong HTML) [6]
   toggle.addEventListener("click", () => {
     const isOpen = !menu.classList.contains("hidden");
     setOpen(!isOpen);
   });
 
-  // Đóng menu khi bấm phím ESC và trả tiêu điểm về nút bấm [4]
+  // Đóng menu bằng phím ESC và trả tiêu điểm về nút toggle [7]
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && !menu.classList.contains("hidden")) {
       setOpen(false);
@@ -29,7 +24,7 @@ export function initNav() {
     }
   });
 
-  // Tự động đóng menu khi phóng to màn hình lên Desktop [7]
+  // Tự động đóng menu khi kéo rộng màn hình lên Desktop [7, 8]
   window.addEventListener("resize", () => {
     if (window.innerWidth >= 1024 && !menu.classList.contains("hidden")) {
       setOpen(false);
@@ -37,39 +32,37 @@ export function initNav() {
   });
 }
 
-// 2. Navbar phản ứng khi cuộn (Thêm bóng đổ) [7]
+// 2. Navbar đổi trạng thái khi cuộn (Thêm bóng đổ)
 export function initHeaderOnScroll() {
   const header = document.querySelector("header");
-  const sentinel = document.getElementById("nav-sentinel");
+  const sentinel = document.getElementById("nav-sentinel"); 
+  // Bạn cần thêm một <div id="nav-sentinel" class="absolute top-0 h-1 w-1"></div> ngay đầu thẻ <body>
   
-  if (!header || !sentinel) return;
+  if (!header || !sentinel) return; [5]
 
-  // Sử dụng IntersectionObserver để tối ưu hiệu năng thay vì sự kiện scroll [7, 8]
   const observer = new IntersectionObserver(([entry]) => {
     const scrolled = !entry.isIntersecting;
-    header.classList.toggle("shadow-sm", scrolled);
+    header.classList.toggle("shadow-sm", scrolled); [8]
   });
 
-  observer.observe(sentinel);
+  observer.observe(sentinel); [8]
 }
 
-// 3. Nhiệm vụ khởi động: Nút Lên đầu trang [2, 3]
+// 2b. Nút Lên đầu trang (Hiện khi cuộn > 400px) [6]
 export function initToTop() {
   const btn = document.getElementById("to-top");
-  if (!btn) return;
+  if (!btn) return; [5]
 
-  // Hiện nút khi cuộn quá 400px [2]
   window.addEventListener("scroll", () => {
     if (window.scrollY > 400) {
       btn.classList.remove("hidden");
-      btn.classList.add("grid"); // Dùng grid để căn giữa icon
+      btn.classList.add("grid"); // Hiện nút (sử dụng grid để căn giữa icon SVG)
     } else {
       btn.classList.add("hidden");
       btn.classList.remove("grid");
     }
   });
 
-  // Cuộn mượt lên đầu trang khi click
   btn.addEventListener("click", () => {
     window.scrollTo({
       top: 0,
