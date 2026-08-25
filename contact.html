@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Liên hệ — VíThôngMinh</title>
     <link rel="stylesheet" href="./dist/output.css" />
-</head>
+    <script type="module" src="./js/theme-init.js"></script>
+  </head>
 <body class="bg-surface font-body text-ink antialiased dark:bg-surface-dark dark:text-ink-invert">
 
      
     <header class="sticky top-0 z-40 border-b border-line bg-surface/85 backdrop-blur dark:border-line-invert dark:bg-surface-dark/85">
-        <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+        <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4" aria-label="Điều hướng chính">
             <a href="./index.html" class="flex items-center gap-2.5">
                 <span class="grid h-9 w-9 place-items-center rounded-lg bg-brand-600 font-display text-lg font-extrabold text-white">V</span>
                 <span class="font-display text-xl font-extrabold text-ink dark:text-white">VíThôngMinh</span>
@@ -31,7 +32,7 @@
             </div>
 
             <!-- FORM  -->
-            <form action="#" method="POST" class="card mt-12 grid gap-6 shadow-lg">
+            <form id="contact-form" action="#" method="POST" class="card mt-12 grid gap-6 shadow-lg">
                 
                 <div class="grid gap-6 md:grid-cols-2">
                     <!-- 1. Họ tên -->
@@ -101,5 +102,6 @@
         </div>
     </footer>
 
+  <script type="module" src="./js/main.js"></script>
 </body>
 </html>

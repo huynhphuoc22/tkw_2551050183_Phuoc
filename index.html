@@ -3,52 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>VíThôngMinh — Phần mềm quản lý chi tiêu gia đình & cá nhân</title>
   <meta name="description" content="Nắm rõ mọi khoản thu chi, tối ưu ngân sách gia đình và cá nhân, đưa ra phương án tài chính thông minh hơn mỗi ngày." />
-
+  
   <!-- Font chữ từ Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
+  
   <!-- Kết nối tới file CSS sau khi build -->
   <link rel="stylesheet" href="./dist/output.css" />
-</head>
-
-<body class="bg-surface font-body text-ink antialiased">
-
   
+  <script type="module" src="./js/theme-init.js"></script>
+
+</head>
+<body class="bg-surface font-body text-ink antialiased dark:bg-surface-dark dark:text-ink-invert">
+  
+  <!-- Skip Link Trợ Năng -->
   <a href="#main" class="btn btn-primary sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50">
     Bỏ qua đến nội dung chính
   </a>
 
-  <!-- 1. SECTION  NAVBAR -->
-  <header class="sticky top-0 z-40 border-b border-line bg-surface/85 backdrop-blur">
+  <!-- Sentinel để phát hiện cuộn trang (Shadow Navbar) -->
+  <div id="nav-sentinel" class="absolute top-0 h-1 w-1"></div>
+
+  <!-- 1. SECTION NAVBAR -->
+  <header class="sticky top-0 z-40 border-b border-line bg-surface/85 backdrop-blur transition-all dark:border-line-invert dark:bg-surface-dark/85">
     <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4" aria-label="Điều hướng chính">
-      
-      <a href="./index.html" class="flex items-center gap-2.5">
+      <a href="./index.html" class="flex items-center gap-2.5 focus:outline-2 focus:outline-offset-2 focus:outline-brand-600">
         <span class="grid h-9 w-9 place-items-center rounded-lg bg-brand-600 font-display text-lg font-extrabold text-white">V</span>
-        <span class="font-display text-xl font-extrabold text-ink">VíThôngMinh</span>
+        <span class="font-display text-xl font-extrabold text-ink dark:text-white">VíThôngMinh</span>
       </a>
 
       <!-- Menu Desktop -->
       <ul class="hidden items-center gap-8 text-sm font-medium lg:flex">
-        <li><a href="#tinh-nang" class="transition hover:text-brand-600">Tính năng</a></li>
-        <li><a href="#so-lieu" class="transition hover:text-brand-600">Con số</a></li>
-        <li><a href="#cam-nhan" class="transition hover:text-brand-600">Đánh giá</a></li>
-        <li><a href="#bang-gia" class="transition hover:text-brand-600">Bảng giá</a></li>
-        <li><a href="#cau-hoi" class="transition hover:text-brand-600">Hỏi đáp</a></li>
+        <li><a href="#tinh-nang" class="transition hover:text-brand-600 focus:outline-2 focus:outline-offset-2 focus:outline-brand-600 rounded">Tính năng</a></li>
+        <li><a href="#so-lieu" class="transition hover:text-brand-600 focus:outline-2 focus:outline-offset-2 focus:outline-brand-600 rounded">Con số</a></li>
+        <li><a href="#cam-nhan" class="transition hover:text-brand-600 focus:outline-2 focus:outline-offset-2 focus:outline-brand-600 rounded">Đánh giá</a></li>
+        <li><a href="#bang-gia" class="transition hover:text-brand-600 focus:outline-2 focus:outline-offset-2 focus:outline-brand-600 rounded">Bảng giá</a></li>
+        <li><a href="#cau-hoi" class="transition hover:text-brand-600 focus:outline-2 focus:outline-offset-2 focus:outline-brand-600 rounded">Hỏi đáp</a></li>
       </ul>
 
-      <div class="flex items-center gap-2">
-        <a href="#cta" class="btn btn-primary hidden lg:inline-flex">Trải nghiệm miễn phí</a>
+      <div class="flex items-center gap-3">
+        <!-- Nút bật/tắt Dark Mode chuẩn Tiếp Cận -->
+        <button id="theme-toggle" type="button" class="grid h-10 w-10 place-items-center rounded-full border border-line hover:bg-slate-100 dark:border-line-invert dark:hover:bg-slate-800 focus:outline-2 focus:outline-offset-2 focus:outline-brand-600" aria-label="Thay đổi giao diện Sáng/Tối">
+          <!-- Icon Mặt Trời -->
+          <svg class="h-5 w-5 block dark:hidden text-ink" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+          </svg>
+          <!-- Icon Mặt Trăng -->
+          <svg class="h-5 w-5 hidden dark:block text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
 
-        <!-- Nút Menu Trên Điện Thoại -->
+        <a href="#cta" class="btn btn-primary hidden lg:inline-flex focus:outline-2 focus:outline-offset-2 focus:outline-brand-600">Trải nghiệm miễn phí</a>
+        
+        <!-- Nút Menu Trên Điện Thoại (Sử dụng JS thay thế onclick) -->
         <button type="button"
-
-                class="grid h-10 w-10 place-items-center rounded-full border border-line lg:hidden"
-                aria-expanded="false" aria-controls="nav-mobile" aria-label="Mở menu">
+          class="grid h-10 w-10 place-items-center rounded-full border border-line lg:hidden focus:outline-2 focus:outline-offset-2 focus:outline-brand-600 dark:border-line-invert"
+          aria-expanded="false" aria-controls="nav-mobile" aria-label="Mở menu">
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <path d="M4 7h16M4 12h16M4 17h16" />
           </svg>
@@ -56,343 +70,418 @@
       </div>
     </nav>
 
-    <!-- Menu Trên Điện Thoại -->
-    <div id="nav-mobile" class="hidden border-t border-line px-5 pb-6 pt-4 lg:hidden">
+    <!-- Menu Trên Điện Thoại (Mặc định ẩn) -->
+    <div id="nav-mobile" class="hidden border-t border-line px-5 pb-6 pt-4 lg:hidden dark:border-line-invert bg-surface dark:bg-surface-dark">
       <ul class="flex flex-col gap-1 text-base font-medium">
-        <li><a href="#tinh-nang" class="block rounded-lg px-3 py-2.5 hover:bg-slate-100">Tính năng</a></li>
-        <li><a href="#so-lieu" class="block rounded-lg px-3 py-2.5 hover:bg-slate-100">Con số</a></li>
-        <li><a href="#cam-nhan" class="block rounded-lg px-3 py-2.5 hover:bg-slate-100">Đánh giá</a></li>
-        <li><a href="#bang-gia" class="block rounded-lg px-3 py-2.5 hover:bg-slate-100">Bảng giá</a></li>
-        <li><a href="#cau-hoi" class="block rounded-lg px-3 py-2.5 hover:bg-slate-100">Hỏi đáp</a></li>
+        <li><a href="#tinh-nang" class="block rounded-lg px-3 py-2.5 hover:bg-slate-100 dark:hover:bg-slate-800">Tính năng</a></li>
+        <li><a href="#so-lieu" class="block rounded-lg px-3 py-2.5 hover:bg-slate-100 dark:hover:bg-slate-800">Con số</a></li>
+        <li><a href="#cam-nhan" class="block rounded-lg px-3 py-2.5 hover:bg-slate-100 dark:hover:bg-slate-800">Đánh giá</a></li>
+        <li><a href="#bang-gia" class="block rounded-lg px-3 py-2.5 hover:bg-slate-100 dark:hover:bg-slate-800">Bảng giá</a></li>
+        <li><a href="#cau-hoi" class="block rounded-lg px-3 py-2.5 hover:bg-slate-100 dark:hover:bg-slate-800">Hỏi đáp</a></li>
       </ul>
       <a href="#cta" class="btn btn-primary btn-lg mt-4 w-full">Trải nghiệm miễn phí</a>
     </div>
   </header>
 
-
   <main id="main">
-
-    <!-- 2.SECTION  HERO -->
+    
+    <!-- 2. SECTION HERO -->
     <section class="section grid items-center gap-14 lg:grid-cols-2 lg:gap-16" aria-labelledby="hero-title">
-      <div>
+      <div class="reveal">
         <p class="eyebrow">Quản lý tài chính cá nhân & gia đình</p>
-
-        <h1 id="hero-title" class="mt-4 font-display text-4xl font-extrabold leading-[1.15] text-ink sm:text-5xl">
+        <h1 id="hero-title" class="mt-4 font-display text-4xl font-extrabold leading-[1.15] text-ink sm:text-5xl dark:text-white">
           Nắm rõ thu chi.<br />
-          <span class="text-brand-600">Tối ưu ngân sách.</span>
+          <span class="text-brand-600 dark:text-brand-500">Tối ưu ngân sách.</span>
         </h1>
-
-        <p class="mt-6 max-w-lg text-lg text-muted">
+        <p class="mt-6 max-w-lg text-lg text-muted dark:text-slate-300">
           Giải pháp giúp cá nhân, gia đình và nhóm bạn ghi chép khoản chi linh hoạt, theo dõi dòng tiền và đưa ra các kế hoạch chi tiêu hợp lý mỗi tháng.
         </p>
-
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="#cta" class="btn btn-primary btn-lg">Dùng thử miễn phí</a>
-          <a href="#tinh-nang" class="btn btn-ghost btn-lg">Khám phá tính năng</a>
+          <a href="#cta" class="btn btn-primary btn-lg focus:outline-2 focus:outline-offset-2 focus:outline-brand-600">Dùng thử miễn phí</a>
+          <a href="#tinh-nang" class="btn btn-ghost btn-lg focus:outline-2 focus:outline-offset-2 focus:outline-brand-600 dark:bg-slate-900 dark:text-white dark:border-line-invert dark:hover:bg-slate-800">Khám phá tính năng</a>
         </div>
-
         <p class="mt-5 text-sm text-muted">
           Không cần liên kết ngân hàng · Dễ dùng trong 3 phút · Bảo mật tuyệt đối
         </p>
       </div>
 
       <!-- Khung Demo Báo Cáo Thu Chi -->
-      <div class="card mx-auto w-full max-w-md bg-slate-50/50">
+      <div class="card mx-auto w-full max-w-md bg-slate-50/50 dark:bg-surface-dark-alt reveal delay-200">
         <div class="flex items-start justify-between">
           <div>
             <p class="text-xs font-semibold uppercase tracking-widest text-muted">Báo cáo tháng 8</p>
-            <p class="font-display text-lg font-bold text-ink">Ngân sách Gia Đình</p>
+            <p class="font-display text-lg font-bold text-ink dark:text-white">Ngân sách Gia Đình</p>
           </div>
-          <span class="rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-600">Đã cân đối</span>
+          <span class="rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-600 dark:bg-brand-950/50 dark:text-brand-400 dark:border-brand-900">Đã cân đối</span>
         </div>
-
-        <dl class="mt-6 space-y-3 border-t border-dashed border-line pt-5 text-sm">
+        <dl class="mt-6 space-y-3 border-t border-dashed border-line dark:border-line-invert pt-5 text-sm">
           <div class="flex justify-between">
-            <dt class="text-muted">Tổng thu nhập</dt>
-            <dd class="font-semibold text-emerald-600">+35.000.000 ₫</dd>
+            <dt class="text-muted dark:text-slate-300">Tổng thu nhập</dt>
+            <dd class="font-semibold text-emerald-600 dark:text-emerald-400">+35.000.000 ₫</dd>
           </div>
           <div class="flex justify-between">
-            <dt class="text-muted">Tiền chợ & Sinh hoạt</dt>
-            <dd class="font-semibold text-ink">-8.200.000 ₫</dd>
+            <dt class="text-muted dark:text-slate-300">Tiền chợ & Sinh hoạt</dt>
+            <dd class="font-semibold text-ink dark:text-white">-8.200.000 ₫</dd>
           </div>
           <div class="flex justify-between">
-            <dt class="text-muted">Học phí & Con cái</dt>
-            <dd class="font-semibold text-ink">-4.500.000 ₫</dd>
+            <dt class="text-muted dark:text-slate-300">Học phí & Con cái</dt>
+            <dd class="font-semibold text-ink dark:text-white">-4.500.000 ₫</dd>
           </div>
           <div class="flex justify-between">
-            <dt class="text-muted">Giải trí & Tiết kiệm</dt>
-            <dd class="font-semibold text-ink">-6.000.000 ₫</dd>
+            <dt class="text-muted dark:text-slate-300">Giải trí & Tiết kiệm</dt>
+            <dd class="font-semibold text-ink dark:text-white">-6.000.000 ₫</dd>
           </div>
         </dl>
-
-        <div class="mt-5 flex items-end justify-between border-t border-dashed border-line pt-5">
-          <span class="text-sm text-muted">Thặng dư tích lũy</span>
-          <span class="font-display text-2xl font-extrabold text-brand-600">+16.300.000 ₫</span>
+        <div class="mt-5 flex items-end justify-between border-t border-dashed border-line dark:border-line-invert pt-5">
+          <span class="text-sm text-muted dark:text-slate-300">Thặng dư tích lũy</span>
+          <span class="font-display text-2xl font-extrabold text-brand-600 dark:text-brand-500">+16.300.000 ₫</span>
         </div>
       </div>
     </section>
 
-
-    <!--  3. SECTION LOGO KHÁCH HÀNG / ĐỐI TƯỢNG SỬ DỤNG -->
-    <section class="border-y border-line bg-slate-50/50 py-10" aria-labelledby="doituong-title">
+    <!-- 3. SECTION ĐỐI TƯỢNG SỬ DỤNG -->
+    <section class="border-y border-line bg-slate-50/50 py-10 dark:border-line-invert dark:bg-surface-dark-alt/30" aria-labelledby="doituong-title">
       <div class="mx-auto max-w-6xl px-5 text-center">
-        <h2 id="doituong-title" class="text-xs font-bold uppercase tracking-wider text-muted">
+        <h2 id="doituong-title" class="text-xs font-bold uppercase tracking-wider text-muted dark:text-slate-400">
           Giải pháp tin cậy cho nhiều nhóm người dùng
         </h2>
-        <ul class="mt-6 flex flex-wrap justify-center gap-6 font-display text-sm font-semibold text-ink sm:gap-10 sm:text-base">
-          <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-brand-500"></span> Cá nhân đi làm</li>
-          <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-brand-500"></span> Gia đình trẻ</li>
-          <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-brand-500"></span> Sinh viên ở ghép</li>
-          <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-brand-500"></span> Nhóm đi du lịch</li>
-          <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-brand-500"></span> Hội kinh doanh nhỏ</li>
+        <ul class="mt-6 flex flex-wrap justify-center gap-6 font-display text-sm font-semibold text-ink sm:gap-10 sm:text-base dark:text-white">
+          <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-brand-500" aria-hidden="true"></span> Cá nhân đi làm</li>
+          <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-brand-500" aria-hidden="true"></span> Gia đình trẻ</li>
+          <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-brand-500" aria-hidden="true"></span> Sinh viên ở ghép</li>
+          <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-brand-500" aria-hidden="true"></span> Nhóm đi du lịch</li>
+          <li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-brand-500" aria-hidden="true"></span> Hội kinh doanh nhỏ</li>
         </ul>
       </div>
     </section>
 
-
     <!-- 4. SECTION TÍNH NĂNG CHÍNH -->
     <section id="tinh-nang" class="section" aria-labelledby="tinh-nang-title">
-      <div class="mx-auto max-w-2xl text-center">
+      <div class="mx-auto max-w-2xl text-center reveal">
         <p class="eyebrow">Tính năng nổi bật</p>
-        <h2 id="tinh-nang-title" class="mt-3 font-display text-3xl font-extrabold text-ink sm:text-4xl">
+        <h2 id="tinh-nang-title" class="mt-3 font-display text-3xl font-extrabold text-ink sm:text-4xl dark:text-white">
           Ba công cụ cốt lõi giúp bạn làm chủ đồng tiền
         </h2>
         <p class="mt-3 text-muted">Loại bỏ các thao tác phức tạp, tập trung vào việc tạo thói quen chi tiêu thông minh.</p>
       </div>
-
       <ul class="mt-12 grid gap-8 md:grid-cols-3">
-        <li class="card">
-        
-          <h3 class="font-display text-xl font-bold text-ink">Ghi chép siêu tốc</h3>
-          <p class="mt-3 leading-relaxed text-muted">Nhập khoản chi chỉ trong 3 giây. Phân loại tự động theo Tiền chợ, Hóa đơn, Giải trí hay Con cái.</p>
+        <li class="card reveal delay-100">
+          <div class="mb-6 grid h-12 w-12 place-items-center rounded-xl bg-brand-50 font-bold text-xl text-brand-600 dark:bg-brand-950/50 dark:text-brand-400">⚡</div>
+          <h3 class="font-display text-xl font-bold text-ink dark:text-white">Ghi chép siêu tốc</h3>
+          <p class="mt-3 leading-relaxed text-muted dark:text-slate-300">Nhập khoản chi chỉ trong 3 giây. Phân loại tự động theo Tiền chợ, Hóa đơn, Giải trí hay Con cái.</p>
         </li>
-        <li class="card">
-         
-          <h3 class="font-display text-xl font-bold text-ink">Ví chung & Chia tiền</h3>
-          <p class="mt-3 leading-relaxed text-muted">Tạo ví dùng chung cho vợ chồng hoặc quỹ nhóm. Tự động tính toán và chia sòng phẳng sau mỗi chuyến đi.</p>
+        <li class="card reveal delay-200">
+          <div class="mb-6 grid h-12 w-12 place-items-center rounded-xl bg-brand-50 font-bold text-xl text-brand-600 dark:bg-brand-950/50 dark:text-brand-400">👥</div>
+          <h3 class="font-display text-xl font-bold text-ink dark:text-white">Ví chung & Chia tiền</h3>
+          <p class="mt-3 leading-relaxed text-muted dark:text-slate-300">Tạo ví dùng chung cho vợ chồng hoặc quỹ nhóm. Tự động tính toán và chia sòng phẳng sau mỗi chuyến đi.</p>
         </li>
-        <li class="card">
-          
-          <h3 class="font-display text-xl font-bold text-ink">Phân tích & Cảnh báo</h3>
-          <p class="mt-3 leading-relaxed text-muted">Biểu đồ trực quan so sánh giữa các tháng. Tự động cảnh báo khi một danh mục sắp vượt hạn mức đề ra.</p>
+        <li class="card reveal delay-300">
+          <div class="mb-6 grid h-12 w-12 place-items-center rounded-xl bg-brand-50 font-bold text-xl text-brand-600 dark:bg-brand-950/50 dark:text-brand-400">📊</div>
+          <h3 class="font-display text-xl font-bold text-ink dark:text-white">Phân tích & Cảnh báo</h3>
+          <p class="mt-3 leading-relaxed text-muted dark:text-slate-300">Biểu đồ trực quan so sánh giữa các tháng. Tự động cảnh báo khi một danh mục sắp vượt hạn mức đề ra.</p>
         </li>
       </ul>
     </section>
 
+    <!-- 5. SECTION SỐ LIỆU -->
+    <section id="so-lieu" class="bg-brand-600 py-20 text-white dark:bg-brand-900" aria-labelledby="solieu-title">
+      <div class="mx-auto max-w-6xl px-5">
+        <h2 id="solieu-title" class="sr-only">Số liệu ấn tượng</h2>
+        <dl class="grid grid-cols-2 gap-8 text-center md:grid-cols-4">
+          <!-- Sử dụng kỹ thuật order-2 đảo ngược cấu trúc hiển thị để đúng ngữ nghĩa Accessibility -->
+          <div class="flex flex-col">
+            <dt class="order-2 mt-2 text-sm text-brand-100">Người dùng tin tưởng</dt>
+            <dd class="font-display text-4xl font-extrabold sm:text-5xl">50.000+</dd>
+          </div>
+          <div class="flex flex-col">
+            <dt class="order-2 mt-2 text-sm text-brand-100">Giao dịch ghi chép</dt>
+            <dd class="font-display text-4xl font-extrabold sm:text-5xl">2.5M+</dd>
+          </div>
+          <div class="flex flex-col">
+            <dt class="order-2 mt-2 text-sm text-brand-100">Tiết kiệm trung bình</dt>
+            <dd class="font-display text-4xl font-extrabold sm:text-5xl">18%</dd>
+          </div>
+          <div class="flex flex-col">
+            <dt class="order-2 mt-2 text-sm text-brand-100">Đánh giá hài lòng</dt>
+            <dd class="font-display text-4xl font-extrabold sm:text-5xl">4.9/5</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
 
-    <!--5.SECTION SỐ LIỆU -->
-    <section id="so-lieu" class="bg-brand-600 py-20 text-white" aria-labelledby="solieu-title">
-  <div class="section py-0! mx-auto max-w-6xl px-5">
-    <h2 id="solieu-title" class="sr-only">Số liệu ấn tượng</h2>
-    <dl class="grid grid-cols-2 gap-8 text-center md:grid-cols-4">
-      <div class="flex flex-col">
-        <dt class="order-2 mt-2 text-sm text-brand-100">Người dùng tin tưởng</dt>
-        <dd class="font-display text-4xl font-extrabold sm:text-5xl">50.000+</dd>
-      </div>
-      <div class="flex flex-col">
-        <dt class="order-2 mt-2 text-sm text-brand-100">Giao dịch ghi chép</dt>
-        <dd class="font-display text-4xl font-extrabold sm:text-5xl">2.5M+</dd>
-      </div>
-      <div class="flex flex-col">
-        <dt class="order-2 mt-2 text-sm text-brand-100">Tiết kiệm trung bình</dt>
-        <dd class="font-display text-4xl font-extrabold sm:text-5xl">18%</dd>
-      </div>
-      <div class="flex flex-col">
-        <dt class="order-2 mt-2 text-sm text-brand-100">Đánh giá hài lòng</dt>
-        <dd class="font-display text-4xl font-extrabold sm:text-5xl">4.9/5</dd>
-      </div>
-    </dl>
-  </div>
-</section>
-    <!-- 6.SECTION CẢM NHẬN -->
+    <!-- 6. SECTION CẢM NHẬN (Slider Viết Tay Buổi 4) -->
     <section id="cam-nhan" class="section" aria-labelledby="camnhan-title">
-      <div class="mx-auto max-w-2xl text-center">
+      <div class="mx-auto max-w-2xl text-center reveal">
         <p class="eyebrow">Ý kiến khách hàng</p>
-        <h2 id="camnhan-title" class="mt-3 font-display text-3xl font-extrabold text-ink sm:text-4xl">
+        <h2 id="camnhan-title" class="mt-3 font-display text-3xl font-extrabold text-ink sm:text-4xl dark:text-white">
           Người dùng nói gì về VíThôngMinh?
         </h2>
       </div>
 
-      <ul class="mt-12 grid gap-8 md:grid-cols-2">
-<li class="card">
-  <figure>
-    <blockquote class="italic text-muted leading-relaxed">
-      "Từ ngày dùng ứng dụng, vợ chồng mình không còn tranh cãi về khoản tiền sinh hoạt cuối tháng. Việc chia tiền vào từng hũ tài chính cực kỳ rõ ràng!"
-    </blockquote>
-    <figcaption class="mt-6 flex items-center gap-3">
-      <div class="grid h-10 w-10 place-items-center rounded-full bg-brand-100 font-bold text-brand-700" aria-hidden="true">NT</div>
-      <div>
-        <p class="font-bold text-ink">Nguyễn Thanh B</p>
-        <cite class="text-xs not-italic text-muted">Nội trợ · TP. Hồ Chí Minh</cite>
-      </div>
-    </figcaption>
-  </figure>
-</li>
-
-        <li class="card">
-          <p class="italic text-muted">"Giao diện đơn giản, nhập khoản chi chỉ mất vài giây. Rất phù hợp với sinh viên ở ghép cần gom tiền nhà và chia chi phí ăn uống sòng phẳng."</p>
-          <div class="mt-6 flex items-center gap-3">
-            <div class="grid h-10 w-10 place-items-center rounded-full bg-brand-100 font-bold text-brand-700">HD</div>
-            <div>
-              <p class="font-bold text-ink">Pham Huỳnh Phước</p>
-              <cite class="text-xs text-muted">Sinh viên đại học</cite>
+      <!-- Container chính của Slider -->
+      <div data-slider class="relative overflow-hidden mt-12 max-w-3xl mx-auto reveal delay-100">
+        <!-- Track dịch chuyển Slider bằng JS (sử dụng translateX) -->
+        <div data-slider-track class="flex transition-transform duration-500 ease-in-out">
+          
+          <!-- Slide 1 -->
+          <div data-slide class="w-full shrink-0 px-4">
+            <div class="card bg-white dark:bg-surface-dark-alt">
+              <figure>
+                <blockquote class="italic text-muted dark:text-slate-300 leading-relaxed text-base">
+                  "Từ ngày dùng ứng dụng, vợ chồng mình không còn tranh cãi về khoản tiền sinh hoạt cuối tháng. Việc chia tiền vào từng hũ tài chính cực kỳ rõ ràng!"
+                </blockquote>
+                <figcaption class="mt-6 flex items-center gap-3">
+                  <div class="grid h-10 w-10 place-items-center rounded-full bg-brand-100 font-bold text-brand-700" aria-hidden="true">NT</div>
+                  <div>
+                    <p class="font-bold text-ink dark:text-white">Nguyễn Thanh B</p>
+                    <cite class="text-xs not-italic text-muted">Nội trợ · TP. Hồ Chí Minh</cite>
+                  </div>
+                </figcaption>
+              </figure>
             </div>
-          </figure>
-        </li>
-      </ul>
+          </div>
+
+          <!-- Slide 2 -->
+          <div data-slide class="w-full shrink-0 px-4" inert>
+            <div class="card bg-white dark:bg-surface-dark-alt">
+              <figure>
+                <blockquote class="italic text-muted dark:text-slate-300 leading-relaxed text-base">
+                  "Giao diện đơn giản, nhập khoản chi chỉ mất vài giây. Rất phù hợp với sinh viên ở ghép cần gom tiền nhà và chia chi phí ăn uống sòng phẳng."
+                </blockquote>
+                <figcaption class="mt-6 flex items-center gap-3">
+                  <div class="grid h-10 w-10 place-items-center rounded-full bg-brand-100 font-bold text-brand-700" aria-hidden="true">HD</div>
+                  <div>
+                    <p class="font-bold text-ink dark:text-white">Pham Huỳnh Phước</p>
+                    <cite class="text-xs not-italic text-muted">Sinh viên đại học</cite>
+                  </div>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Các Nút Điều Khiển Slider -->
+        <div class="flex justify-center gap-4 mt-6">
+          <button data-slider-prev class="grid h-10 w-10 place-items-center rounded-full border border-line bg-white hover:bg-slate-50 focus:outline-2 focus:outline-offset-2 focus:outline-brand-600 dark:border-line-invert dark:bg-slate-900 dark:hover:bg-slate-800 cursor-pointer" aria-label="Đánh giá trước">
+            <svg class="h-5 w-5 text-ink dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button data-slider-next class="grid h-10 w-10 place-items-center rounded-full border border-line bg-white hover:bg-slate-50 focus:outline-2 focus:outline-offset-2 focus:outline-brand-600 dark:border-line-invert dark:bg-slate-900 dark:hover:bg-slate-800 cursor-pointer" aria-label="Đánh giá tiếp theo">
+            <svg class="h-5 w-5 text-ink dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
     </section>
 
-    <!--7. SECTION BẢNG GIÁ -->
-    <section class ="section" id="bang-gia" class="border-y border-line bg-slate-50/70 py-20" aria-labelledby="gia-title">
+    <!-- 7. SECTION BẢNG GIÁ (Với Công tắc gạt chu kỳ Tháng/Năm) -->
+    <section id="bang-gia" class="section border-y border-line bg-slate-50/70 py-20 dark:border-line-invert dark:bg-surface-dark-alt/20" aria-labelledby="gia-title">
       <div class="mx-auto max-w-6xl px-5">
-        <div class="mx-auto max-w-2xl text-center">
-          <p class="mt-4  text-2xl font-extrabold sm:text-2xl eyebrow">Bảng giá minh bạch</p>
-          <h2 id="gia-title" class="mt-4  text-4xl font-extrabold text-ink sm:text-4xl ">
+        <div class="mx-auto max-w-2xl text-center reveal">
+          <p class="eyebrow">Bảng giá minh bạch</p>
+          <h2 id="gia-title" class="mt-4 text-3xl font-extrabold text-ink sm:text-4xl dark:text-white">
             Lựa chọn gói phù hợp với nhu cầu
           </h2>
           <p class="mt-4 text-lg text-muted">Miễn phí vĩnh viễn cho cá nhân. Nâng cấp để dùng thêm tính năng gia đình và nhóm.</p>
+
+          <!-- Công tắc gạt (Switch) -->
+          <div class="flex items-center justify-center gap-4 mt-8">
+            <span class="text-sm font-semibold text-muted dark:text-slate-300">Thanh toán hàng tháng</span>
+            <button role="switch" aria-checked="false" id="price-switch" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-slate-200 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2 dark:bg-slate-700 dark:focus:ring-brand-500" aria-label="Đổi đơn vị chu kỳ tính giá">
+              <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out translate-x-0"></span>
+            </button>
+            <span class="text-sm font-semibold text-muted dark:text-slate-300">Thanh toán theo năm <span class="rounded bg-brand-100 text-brand-700 px-1.5 py-0.5 text-xs dark:bg-brand-950 dark:text-brand-400">Tiết kiệm 20%</span></span>
+          </div>
         </div>
 
-        <ul class="mt-14 grid items-stretch gap-6 md:grid-cols-3 ">
-          <li class="card flex h-full flex-col justify-between ">
-            <div class=" flex-1 flex flex-col">
-              <h3 class="font-display text-xl font-bold text-ink">Cá nhân</h3>
+        <ul class="mt-14 grid items-stretch gap-6 md:grid-cols-3">
+          <!-- Gói Cá nhân (Miễn phí) -->
+          <li class="card flex h-full flex-col justify-between reveal delay-100">
+            <div class="flex-1 flex flex-col">
+              <h3 class="font-display text-xl font-bold text-ink dark:text-white">Cá nhân</h3>
               <p class="mt-1 text-sm text-muted">Dành cho người mới bắt đầu.</p>
-              <p class="mt-6 font-display text-4xl font-extrabold text-ink">Miễn phí<span class="text-sm font-normal text-muted">/tháng đầu</span></p>
-              <ul class="mt-6 space-y-3 text-sm text-muted">
-                <li>✔ 1 tài khoản cá nhân</li>
-                <li>✔ Ghi chép thu chi không giới hạn</li>
-                <li>✔ Báo cáo cơ bản hàng tháng</li>
+              <p class="mt-6 font-display text-4xl font-extrabold text-ink dark:text-white">Miễn phí<span class="text-sm font-normal text-muted">/vĩnh viễn</span></p>
+              <ul class="mt-6 space-y-3 text-sm text-muted dark:text-slate-300 border-t border-line dark:border-line-invert pt-6">
+                <li class="flex items-center gap-2"><span class="text-emerald-500">✔</span> 1 tài khoản cá nhân</li>
+                <li class="flex items-center gap-2"><span class="text-emerald-500">✔</span> Ghi chép thu chi không giới hạn</li>
+                <li class="flex items-center gap-2"><span class="text-emerald-500">✔</span> Báo cáo cơ bản hàng tháng</li>
               </ul>
             </div>
-            <a href="#cta" class="btn btn-primary mt-auto w-full">Đăng kí ngay</a>
+            <a href="#cta" class="btn btn-primary mt-8 w-full focus:outline-2 focus:outline-offset-2 focus:outline-brand-600">Đăng ký ngay</a>
           </li>
 
-          <li class="card flex h-full flex-col justify-between">
-            <div class=" flex-1 flex flex-col ">
-              <h3 class="font-display text-xl font-bold text-ink">Gia đình</h3>
-              <p class="mt-1 text-xs text-muted">Dành cho vợ chồng cùng quản lý.</p>
-              <p class="mt-6 font-display text-4xl font-extrabold">49.000 ₫<span class="text-sm font-normal text-muted">/tháng</span></p>
-              <ul class="mt-6 space-y-3 text-sm text-muted">
-                <li>✔ Tối đa 10 thành viên</li>
-                <li>✔ Tạo nhiều Ví chung/Ví riêng</li>
-                <li>✔ Cảnh báo vượt hạn mức thông minh</li>
-                <li>✔ Xuất báo cáo chi tiết Excel/PDF</li>
+          <!-- Gói Gia đình -->
+          <li class="card flex h-full flex-col justify-between ring-2 ring-brand-600 dark:ring-brand-500 relative reveal delay-200">
+            <span class="absolute -top-3 left-6 rounded-full bg-brand-600 text-white px-3 py-1 text-xs font-semibold dark:bg-brand-500">Phổ biến nhất</span>
+            <div class="flex-1 flex flex-col">
+              <h3 class="font-display text-xl font-bold text-ink dark:text-white">Gia đình</h3>
+              <p class="mt-1 text-sm text-muted">Dành cho vợ chồng cùng quản lý.</p>
+              <p class="mt-6 font-display text-4xl font-extrabold text-ink dark:text-white">
+                <span data-price data-monthly="49000" data-yearly="470400">49.000 ₫</span>
+                <span data-billing-period class="text-sm font-normal text-muted">/tháng</span>
+              </p>
+              <ul class="mt-6 space-y-3 text-sm text-muted dark:text-slate-300 border-t border-line dark:border-line-invert pt-6">
+                <li class="flex items-center gap-2"><span class="text-emerald-500">✔</span> Tối đa 10 thành viên</li>
+                <li class="flex items-center gap-2"><span class="text-emerald-500">✔</span> Tạo nhiều Ví chung/Ví riêng</li>
+                <li class="flex items-center gap-2"><span class="text-emerald-500">✔</span> Cảnh báo vượt hạn mức thông minh</li>
+                <li class="flex items-center gap-2"><span class="text-emerald-500">✔</span> Xuất báo cáo chi tiết Excel/PDF</li>
               </ul>
             </div>
-            <a href="#cta" class="btn btn-primary mt-auto w-full">Dùng thử 7 ngày</a>
+            <a href="#cta" class="btn btn-primary mt-8 w-full focus:outline-2 focus:outline-offset-2 focus:outline-brand-600">Dùng thử 7 ngày</a>
           </li>
 
-          <li class="card flex h-full flex-col justify-between">
-            <div class=" flex-1 flex flex-col">
-              <h3 class="font-display text-xl font-bold text-ink">Nhóm & Cửa hàng</h3>
-              <p class="mt-1 text-xs text-muted">Dành cho nhóm bạn đi chơi/kinh doanh.</p>
-              <p class="mt-6 font-display text-4xl font-extrabold text-ink">99.000 ₫<span class="text-sm font-normal text-muted">/tháng</span></p>
-              <ul class="mt-6 space-y-3 text-sm text-muted">
-                <li>✔ Tối đa 20 thành viên</li>
-                <li>✔ Tự động chia tiền sòng phẳng</li>
-                <li>✔ Phân quyền quản lý quỹ nhóm</li>
-                <li>✔ Hỗ trợ ưu tiên 24/7</li>
+          <!-- Gói Nhóm & Cửa hàng -->
+          <li class="card flex h-full flex-col justify-between reveal delay-300">
+            <div class="flex-1 flex flex-col">
+              <h3 class="font-display text-xl font-bold text-ink dark:text-white">Nhóm & Cửa hàng</h3>
+              <p class="mt-1 text-sm text-muted">Dành cho nhóm bạn đi chơi/kinh doanh.</p>
+              <p class="mt-6 font-display text-4xl font-extrabold text-ink dark:text-white">
+                <span data-price data-monthly="99000" data-yearly="950400">99.000 ₫</span>
+                <span data-billing-period class="text-sm font-normal text-muted">/tháng</span>
+              </p>
+              <ul class="mt-6 space-y-3 text-sm text-muted dark:text-slate-300 border-t border-line dark:border-line-invert pt-6">
+                <li class="flex items-center gap-2"><span class="text-emerald-500">✔</span> Tối đa 20 thành viên</li>
+                <li class="flex items-center gap-2"><span class="text-emerald-500">✔</span> Tự động chia tiền sòng phẳng</li>
+                <li class="flex items-center gap-2"><span class="text-emerald-500">✔</span> Phân quyền quản lý quỹ nhóm</li>
+                <li class="flex items-center gap-2"><span class="text-emerald-500">✔</span> Hỗ trợ ưu tiên 24/7</li>
               </ul>
             </div>
-            <a href="#cta" class="btn btn-primary mt-auto w-full">Đăng ký ngay</a>
+            <a href="#cta" class="btn btn-primary mt-8 w-full focus:outline-2 focus:outline-offset-2 focus:outline-brand-600">Đăng ký ngay</a>
           </li>
         </ul>
       </div>
     </section>
 
-   
-    
-    
-    <!-- 8. SECTION CÂU HỎI THƯỜNG GẶP -->
+    <!-- 8. SECTION CÂU HỎI THƯỜNG GẶP (Accordion) -->
     <section id="cau-hoi" class="section" aria-labelledby="faq-title">
-      <div class="mx-auto max-w-2xl text-center">
+      <div class="mx-auto max-w-2xl text-center reveal">
         <p class="eyebrow">Giải đáp thắc mắc</p>
-        <h2 id="faq-title" class="mt-3 font-display text-3xl font-extrabold text-ink sm:text-4xl">
+        <h2 id="faq-title" class="mt-3 font-display text-3xl font-extrabold text-ink sm:text-4xl dark:text-white">
           Câu hỏi thường gặp
         </h2>
       </div>
 
-      <dl class="mx-auto mt-12 max-w-3xl space-y-6">
-        <div class="card">
-          <dt class="font-display text-lg font-bold text-ink">Tôi có cần liên kết tài khoản ngân hàng không?</dt>
-          <dd class="mt-2 text-muted">Hoàn toàn không. VíThôngMinh cho phép bạn chủ động nhập liệu thủ công hoặc tải hóa đơn để đảm bảo an toàn tuyệt đối cho dữ liệu cá nhân.</dd>
+      <dl id="faq-list" class="mx-auto mt-12 max-w-3xl space-y-6 reveal delay-100">
+        
+        <!-- Câu hỏi 1 -->
+        <div class="card p-0 overflow-hidden">
+          <dt>
+            <button type="button" data-faq-trigger aria-expanded="false" aria-controls="faq-ans-1" class="flex w-full items-center justify-between px-6 py-5 text-left font-display text-lg font-bold text-ink dark:text-white hover:text-brand-600 dark:hover:text-brand-400 focus:outline-2 focus:outline-offset-2 focus:outline-brand-600 cursor-pointer">
+              <span>Tôi có cần liên kết tài khoản ngân hàng không?</span>
+              <svg class="h-5 w-5 shrink-0 transition-transform duration-200 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </dt>
+          <dd id="faq-ans-1" class="hidden border-t border-line px-6 py-5 text-muted dark:border-line-invert dark:text-slate-300 bg-slate-50/50 dark:bg-slate-900/30">
+            Hoàn toàn không. VíThôngMinh cho phép bạn chủ động nhập liệu thủ công hoặc tải hóa đơn để đảm bảo an toàn tuyệt đối cho dữ liệu cá nhân.
+          </dd>
         </div>
-        <div class="card">
-          <dt class="font-display text-lg font-bold text-ink">Ứng dụng có thể dùng trên nhiều thiết bị không?</dt>
-          <dd class="mt-2 text-muted">Có, dữ liệu được đồng bộ hóa tức thì trên điện thoại (iOS, Android) và giao diện web máy tính.</dd>
+
+        <!-- Câu hỏi 2 -->
+        <div class="card p-0 overflow-hidden">
+          <dt>
+            <button type="button" data-faq-trigger aria-expanded="false" aria-controls="faq-ans-2" class="flex w-full items-center justify-between px-6 py-5 text-left font-display text-lg font-bold text-ink dark:text-white hover:text-brand-600 dark:hover:text-brand-400 focus:outline-2 focus:outline-offset-2 focus:outline-brand-600 cursor-pointer">
+              <span>Ứng dụng có thể dùng trên nhiều thiết bị không?</span>
+              <svg class="h-5 w-5 shrink-0 transition-transform duration-200 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </dt>
+          <dd id="faq-ans-2" class="hidden border-t border-line px-6 py-5 text-muted dark:border-line-invert dark:text-slate-300 bg-slate-50/50 dark:bg-slate-900/30">
+            Có, dữ liệu được đồng bộ hóa tức thì trên điện thoại (iOS, Android) và giao diện web máy tính.
+          </dd>
         </div>
-        <div class="card">
-          <dt class="font-display text-lg font-bold text-ink">Gói miễn phí có bị giới hạn thời gian không?</dt>
-          <dd class="mt-2 text-muted">Gói Cá nhân hoàn toàn miễn phí trọn đời và không giới hạn số lượng khoản ghi chép thu chi.</dd>
+
+        <!-- Câu hỏi 3 -->
+        <div class="card p-0 overflow-hidden">
+          <dt>
+            <button type="button" data-faq-trigger aria-expanded="false" aria-controls="faq-ans-3" class="flex w-full items-center justify-between px-6 py-5 text-left font-display text-lg font-bold text-ink dark:text-white hover:text-brand-600 dark:hover:text-brand-400 focus:outline-2 focus:outline-offset-2 focus:outline-brand-600 cursor-pointer">
+              <span>Gói miễn phí có bị giới hạn thời gian không?</span>
+              <svg class="h-5 w-5 shrink-0 transition-transform duration-200 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </dt>
+          <dd id="faq-ans-3" class="hidden border-t border-line px-6 py-5 text-muted dark:border-line-invert dark:text-slate-300 bg-slate-50/50 dark:bg-slate-900/30">
+            Gói Cá nhân hoàn toàn miễn phí trọn đời và không giới hạn số lượng khoản ghi chép thu chi.
+          </dd>
         </div>
+
       </dl>
     </section>
-<!-- SECTION MỚI KHÔNG CÓ TRONG FIGMA-->
-<section id="huong-dan" class="section border-t border-line" aria-labelledby="huong-dan-title">
-  <div class="mx-auto max-w-2xl text-center">
-    <p class="eyebrow">Khởi đầu dễ dàng</p>
-    <h2 id="huong-dan-title" class="mt-3 font-display text-3xl font-extrabold text-ink sm:text-4xl">
-      3 bước để làm chủ tài chính
-    </h2>
-  </div>
-  <ol class="mt-12 grid gap-8 md:grid-cols-3">
-    <li class="relative">
-      <span class="font-display text-6xl font-black text-slate-100 absolute -top-6 -left-2 z-0" aria-hidden="true">01</span>
-      <div class="relative z-10">
-        <h3 class="font-display text-xl font-bold text-brand-600">Tải ứng dụng</h3>
-        <p class="mt-2 text-muted text-sm">Cài đặt VíThôngMinh miễn phí trên App Store hoặc Google Play chỉ trong 1 phút.</p>
-      </div>
-    </li>
-    <li class="relative">
-      <span class="font-display text-6xl font-black text-slate-100 absolute -top-6 -left-2 z-0" aria-hidden="true">02</span>
-      <div class="relative z-10">
-        <h3 class="font-display text-xl font-bold text-brand-600">Thiết lập ví</h3>
-        <p class="mt-2 text-muted text-sm">Tạo các hũ chi tiêu: Tiền chợ, Tiền học, Tiết kiệm... theo nhu cầu cá nhân.</p>
-      </div>
-    </li>
-    <li class="relative">
-      <span class="font-display text-6xl font-black text-slate-100 absolute -top-6 -left-2 z-0" aria-hidden="true">03</span>
-      <div class="relative z-10">
-        <h3 class="font-display text-xl font-bold text-brand-600">Ghi chép & Tối ưu</h3>
-        <p class="mt-2 text-muted text-sm">Nhập khoản chi ngay khi phát sinh. Ứng dụng sẽ cảnh báo nếu bạn chi tiêu quá đà.</p>
-      </div>
-    </li>
-  </ol>
-</section>
 
-    <!-- 9.SECTION CALL TO ACTION -->
+    <!-- SECTION MỚI KHÔNG CÓ TRONG FIGMA -->
+    <section id="huong-dan" class="section border-t border-line dark:border-line-invert" aria-labelledby="huong-dan-title">
+      <div class="mx-auto max-w-2xl text-center reveal">
+        <p class="eyebrow">Khởi đầu dễ dàng</p>
+        <h2 id="huong-dan-title" class="mt-3 font-display text-3xl font-extrabold text-ink sm:text-4xl dark:text-white">
+          3 bước để làm chủ tài chính
+        </h2>
+      </div>
+      <ol class="mt-12 grid gap-8 md:grid-cols-3">
+        <li class="relative reveal delay-100">
+          <span class="font-display text-6xl font-black text-slate-100 dark:text-slate-800 absolute -top-6 -left-2 z-0" aria-hidden="true">01</span>
+          <div class="relative z-10">
+            <h3 class="font-display text-xl font-bold text-brand-600 dark:text-brand-500">Tải ứng dụng</h3>
+            <p class="mt-2 text-muted text-sm dark:text-slate-300">Cài đặt VíThôngMinh miễn phí trên App Store hoặc Google Play chỉ trong 1 phút.</p>
+          </div>
+        </li>
+        <li class="relative reveal delay-200">
+          <span class="font-display text-6xl font-black text-slate-100 dark:text-slate-800 absolute -top-6 -left-2 z-0" aria-hidden="true">02</span>
+          <div class="relative z-10">
+            <h3 class="font-display text-xl font-bold text-brand-600 dark:text-brand-500">Thiết lập ví</h3>
+            <p class="mt-2 text-muted text-sm dark:text-slate-300">Tạo các hũ chi tiêu: Tiền chợ, Tiền học, Tiết kiệm... theo nhu cầu cá nhân.</p>
+          </div>
+        </li>
+        <li class="relative reveal delay-300">
+          <span class="font-display text-6xl font-black text-slate-100 dark:text-slate-800 absolute -top-6 -left-2 z-0" aria-hidden="true">03</span>
+          <div class="relative z-10">
+            <h3 class="font-display text-xl font-bold text-brand-600 dark:text-brand-500">Ghi chép & Tối ưu</h3>
+            <p class="mt-2 text-muted text-sm dark:text-slate-300">Nhập khoản chi ngay khi phát sinh. Ứng dụng sẽ cảnh báo nếu bạn chi tiêu quá đà.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 9. SECTION CALL TO ACTION -->
     <section id="cta" class="section" aria-labelledby="cta-title">
-      <div class="rounded-3xl bg-brand-600 p-8 text-center text-white shadow-xl sm:p-12">
+      <div class="rounded-3xl bg-brand-600 p-8 text-center text-white shadow-xl sm:p-12 dark:bg-brand-900 reveal">
         <h2 id="cta-title" class="font-display text-3xl font-extrabold text-white sm:text-4xl">
           Bắt đầu kiểm soát tài chính của bạn ngay hôm nay
         </h2>
-        <p class="mx-auto mt-3 max-w-lg text-brand-100">
+        <p class="mx-auto mt-3 max-w-lg text-brand-100 dark:text-brand-200">
           Cài đặt miễn phí chỉ mất 1 phút. Không yêu cầu thẻ tín dụng.
         </p>
         <div class="mt-8 flex flex-wrap justify-center gap-4">
-          <a href="#" class="btn btn-lg bg-white font-bold text-brand-600 hover:bg-brand-50">Tải ứng dụng miễn phí</a>
-          <a href="tel:+842873005678" class="btn btn-lg border border-white/40 text-white hover:bg-white/10">Tư vấn: 028 7300 5678</a>
+          <a href="#" class="btn btn-lg bg-white font-bold text-brand-600 hover:bg-brand-50 focus:outline-2 focus:outline-offset-2 focus:outline-brand-600 rounded-xl">Tải ứng dụng miễn phí</a>
+          <a href="tel:+842873005678" class="btn btn-lg border border-white/40 text-white hover:bg-white/10 focus:outline-2 focus:outline-offset-2 focus:outline-brand-600 rounded-xl">Tư vấn: 028 7300 5678</a>
         </div>
       </div>
     </section>
 
   </main>
 
-
   <!-- 10. SECTION FOOTER SECTION -->
-  <footer class="border-t border-line bg-white py-12 text-sm text-muted">
+  <footer class="border-t border-line bg-white py-12 text-sm text-muted dark:border-line-invert dark:bg-slate-900">
     <div class="mx-auto max-w-6xl px-5 text-center">
-      <p>@PHẠM HUỲNH PHƯỚC ĐẠI HỌC MỞ.</p>
+      <p>© PHẠM HUỲNH PHƯỚC - ĐẠI HỌC MỞ.</p>
     </div>
   </footer>
 
- <button id="to-top" 
-  class="fixed bottom-6 right-6 z-50 hidden h-12 w-12 place-items-center rounded-full bg-brand-600 text-white shadow-lg transition-all hover:scale-110"
-  aria-label="Quay về đầu trang">
+  <!-- Nút Lên đầu trang (Nhiệm vụ khởi động) -->
+  <button id="to-top"
+    class="fixed bottom-6 right-6 z-50 hidden h-12 w-12 place-items-center rounded-full bg-brand-600 text-white shadow-lg transition-all hover:scale-110 active:scale-95 focus:outline-2 focus:outline-offset-2 focus:outline-brand-600 cursor-pointer dark:bg-brand-500"
+    aria-label="Quay về đầu trang">
+    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    </svg>
+  </button>
 
-</button>
-
- <script type="module" src="./js/main.js"></script>
+  <!-- Nạp file script module chính -->
+  <script type="module" src="./js/main.js"></script>
 </body>
 </html>

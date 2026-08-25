@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sổ Ghi Chép Thu Chi — VíThôngMinh</title>
+  <link rel="stylesheet" href="./dist/output.css" />
+  <script type="module" src="./js/theme-init.js"></script>
+
+</head>
+<body class="bg-surface font-body text-ink antialiased dark:bg-surface-dark dark:text-ink-invert">
+  <a href="#main" class="btn btn-primary sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50">
+    Bỏ qua đến nội dung chính
+  </a>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 border-b border-line bg-surface/85 backdrop-blur dark:border-line-invert dark:bg-surface-dark/85">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4" aria-label="Điều hướng chính">
+      <a href="./index.html" class="flex items-center gap-2.5">
+        <span class="grid h-9 w-9 place-items-center rounded-lg bg-brand-600 font-display text-lg font-extrabold text-white">V</span>
+        <span class="font-display text-xl font-extrabold text-ink dark:text-white">VíThôngMinh</span>
+      </a>
+      <a href="./index.html" class="text-sm font-medium hover:text-brand-600">Quay lại trang chủ</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="section">
+      <div class="mb-8 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h1 class="font-display text-3xl font-extrabold text-ink dark:text-white">Sổ Ghi Chép Thu Chi Gia Đình</h1>
+          <p class="mt-1 text-muted text-sm">Theo dõi chi tiết mọi khoản thu nhập, hóa đơn sinh hoạt, học phí và tiền đi chợ.</p>
+        </div>
+        <button id="btn-restore" class="btn btn-ghost py-2 text-sm border border-line rounded-lg" aria-label="Khôi phục dữ liệu mẫu">
+          Khôi phục dữ liệu gốc
+        </button>
+      </div>
+
+      <!-- Tìm kiếm & Bộ lọc (Kết hợp đồng thời) -->
+      <div class="card mb-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-muted mb-1.5" for="search">Tìm kiếm khoản chi</label>
+          <input type="search" id="search" placeholder="Nhập tên hoặc danh mục cần tìm..." class="w-full rounded-lg border border-line bg-white px-3 py-2 text-sm outline-none dark:border-line-invert dark:bg-slate-900 dark:text-white" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-muted mb-1.5" for="filter-category">Danh mục thu chi</label>
+          <select id="filter-category" class="w-full rounded-lg border border-line bg-white px-3 py-2 text-sm outline-none cursor-pointer dark:border-line-invert dark:bg-slate-900 dark:text-white">
+            <option value="all">Tất cả danh mục</option>
+            <option value="Tiền chợ & Sinh hoạt">Tiền chợ & Sinh hoạt</option>
+            <option value="Học phí & Con cái">Học phí & Con cái</option>
+            <option value="Hóa đơn & Dịch vụ">Hóa đơn & Dịch vụ</option>
+            <option value="Giải trí & Mua sắm">Giải trí & Mua sắm</option>
+            <option value="Thu nhập">Thu nhập</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-muted mb-1.5" for="filter-status">Trạng thái giao dịch</label>
+          <select id="filter-status" class="w-full rounded-lg border border-line bg-white px-3 py-2 text-sm outline-none cursor-pointer dark:border-line-invert dark:bg-slate-900 dark:text-white">
+            <option value="all">Tất cả trạng thái</option>
+            <option value="da-chot">Đã thanh toán / Đã chốt</option>
+            <option value="cho-duyet">Dự chi / Chờ duyệt</option>
+            <option value="huy">Đã hủy bỏ</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-muted mb-1.5" for="sort">Sắp xếp dòng tiền</label>
+          <select id="sort" class="w-full rounded-lg border border-line bg-white px-3 py-2 text-sm outline-none cursor-pointer dark:border-line-invert dark:bg-slate-900 dark:text-white">
+            <option value="date-desc">Mới nhất trước</option>
+            <option value="date-asc">Cũ nhất trước</option>
+            <option value="amount-desc">Số tiền (Giảm dần)</option>
+            <option value="amount-asc">Số tiền (Tăng dần)</option>
+            <option value="weight-desc">Số lượng (Giảm dần)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Form Thêm Giao Dịch Mới -->
+      <div class="card mb-6">
+        <h2 class="font-display text-lg font-bold mb-4 text-ink dark:text-white">Ghi chép khoản thu chi mới</h2>
+        <p id="record-form-summary" class="hidden mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700 dark:border-red-900/50 dark:bg-red-950/30 dark:text-red-300" role="alert" aria-live="assertive"></p>
+        <form id="add-record-form" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5 items-end">
+          <div>
+            <label class="block text-xs font-semibold text-muted mb-1 dark:text-slate-300" for="new-trader">Mô tả khoản chi *</label>
+            <input type="text" id="new-trader" aria-describedby="record-form-summary" placeholder="Ví dụ: Đi siêu thị BigC" required class="w-full rounded-lg border border-line bg-white px-3 py-2 text-sm outline-none dark:border-line-invert dark:bg-slate-900 dark:text-white" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-muted mb-1 dark:text-slate-300" for="new-category">Danh mục chi tiêu</label>
+            <select id="new-category" class="w-full rounded-lg border border-line bg-white px-3 py-2 text-sm outline-none dark:border-line-invert dark:bg-slate-900 dark:text-white">
+              <option value="Tiền chợ & Sinh hoạt">Tiền chợ & Sinh hoạt</option>
+              <option value="Học phí & Con cái">Học phí & Con cái</option>
+              <option value="Hóa đơn & Dịch vụ">Hóa đơn & Dịch vụ</option>
+              <option value="Giải trí & Mua sắm">Giải trí & Mua sắm</option>
+              <option value="Thu nhập">Thu nhập</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-muted mb-1 dark:text-slate-300" for="new-weight">Số lượng mua / Số lần *</label>
+            <input type="number" id="new-weight" aria-describedby="record-form-summary" required min="1" value="1" class="w-full rounded-lg border border-line bg-white px-3 py-2 text-sm outline-none dark:border-line-invert dark:bg-slate-900 dark:text-white" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-muted mb-1 dark:text-slate-300" for="new-amount">Số tiền (VND) *</label>
+            <input type="number" id="new-amount" aria-describedby="record-form-summary" required min="1000" step="1000" class="w-full rounded-lg border border-line bg-white px-3 py-2 text-sm outline-none dark:border-line-invert dark:bg-slate-900 dark:text-white" />
+          </div>
+          <div>
+            <button type="submit" class="btn btn-primary w-full py-2 rounded-lg text-sm">Ghi khoản mới</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Vùng Chứa Các Trạng Thái (Loading / Có Dữ Liệu / Rỗng / Lỗi) -->
+      <div id="data-container" class="card p-0 overflow-hidden relative min-h-[300px]">
+        
+        <!-- Trạng thái 1: Đang tải (Loading Skeleton) -->
+        <div id="state-loading" class="absolute inset-0 bg-white dark:bg-slate-950 flex flex-col justify-center items-center gap-4 z-10" role="status" aria-live="polite">
+          <div class="h-10 w-10 animate-spin rounded-full border-4 border-slate-200 border-t-brand-600"></div>
+          <p class="text-sm text-muted animate-pulse">Đang nạp sổ thu chi, vui lòng chờ...</p>
+        </div>
+
+        <!-- Trạng thái 2: Lỗi nạp mạng (Error State) -->
+        <div id="state-error" class="hidden absolute inset-0 bg-red-50/90 dark:bg-red-950/20 flex flex-col justify-center items-center p-6 text-center z-10">
+          <span class="text-3xl" aria-hidden="true">⚠️</span>
+          <p id="error-message" class="mt-2 text-sm font-semibold text-red-600 dark:text-red-400"></p>
+        </div>
+
+        <!-- Trạng thái 3: Không tìm thấy kết quả (Empty State) -->
+        <div id="state-empty" class="hidden py-16 text-center">
+          <span class="text-4xl text-slate-300" aria-hidden="true">📁</span>
+          <p class="mt-3 text-sm font-medium text-muted">Không tìm thấy khoản ghi chép nào khớp với bộ lọc.</p>
+        </div>
+
+        <!-- Trạng thái 4: Có dữ liệu (Data Table) -->
+        <div id="state-data" class="overflow-x-auto">
+          <table class="w-full min-w-[980px] border-collapse text-left text-sm">
+            <caption class="sr-only">Danh sách các giao dịch thu chi được tải từ dữ liệu JSON</caption>
+            <thead class="border-b border-line bg-slate-50 dark:border-line-invert dark:bg-slate-900/50">
+              <tr>
+                <th class="px-6 py-4 font-semibold text-ink dark:text-white">Mã giao dịch</th>
+                <th class="px-6 py-4 font-semibold text-ink dark:text-white">Khoản thu chi / Đối tác</th>
+                <th class="px-6 py-4 font-semibold text-ink dark:text-white">Danh mục</th>
+                <th class="px-6 py-4 font-semibold text-ink dark:text-white">Số lượng</th>
+                <th class="px-6 py-4 font-semibold text-ink dark:text-white">Số tiền</th>
+                <th class="px-6 py-4 font-semibold text-ink dark:text-white">Ngày thực hiện</th>
+                <th class="px-6 py-4 font-semibold text-ink dark:text-white">Trạng thái</th>
+                <th class="px-6 py-4 font-semibold text-ink dark:text-white text-center">Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="records-tbody" class="divide-y divide-line dark:divide-line-invert">
+              <!-- Render tự động qua JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Template dòng dữ liệu an toàn phòng chống XSS (Dùng đúng các token data-cell của đề bài) -->
+  <template id="row-template">
+    <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-900/10">
+      <td class="px-6 py-4 font-mono text-xs font-semibold text-brand-600" data-cell="id"></td>
+      <td class="px-6 py-4 font-medium text-ink dark:text-white" data-cell="trader"></td> <!-- Đọc tên khoản chi từ trader -->
+      <td class="px-6 py-4 text-muted" data-cell="category"></td>
+      <td class="px-6 py-4 text-ink dark:text-white" data-cell="weight"></td> <!-- Hiển thị số lượng từ weight -->
+      <td class="px-6 py-4 font-semibold" data-cell="amount"></td>
+      <td class="px-6 py-4 text-muted" data-cell="date"></td>
+      <td class="px-6 py-4" data-cell="status"></td>
+      <td class="px-6 py-4 text-center">
+        <button class="text-red-500 hover:text-red-700 text-xs font-bold cursor-pointer focus:outline-2 focus:outline-offset-2 focus:outline-brand-600 rounded" data-action="delete" aria-label="Xóa dòng thu chi này" title="Xóa giao dịch">
+          Xóa
+        </button>
+      </td>
+    </tr>
+  </template>
+
+  <footer class="border-t border-line bg-white py-8 text-xs text-muted dark:border-line-invert dark:bg-slate-900">
+    <div class="mx-auto max-w-6xl px-5 text-center">
+      <p>© PHẠM HUỲNH PHƯỚC - ĐẠI HỌC MỞ.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

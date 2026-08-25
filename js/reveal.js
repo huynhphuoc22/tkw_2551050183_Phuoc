@@ -1,20 +1,25 @@
 export function initReveal() {
-  // Kiểm tra nếu người dùng cài đặt giảm chuyển động thì không chạy hiệu ứng [2]
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  // Đánh dấu JS đã sẵn sàng để hiệu ứng reveal được kích hoạt.
+  document.documentElement.classList.add("js-ready");
 
-  // Sử dụng IntersectionObserver để tối ưu hiệu năng thay vì sự kiện scroll [3, 4]
-  const observer = new IntersectionObserver((entries) => {
+  const targets = document.querySelectorAll(".reveal");
+
+  if (targets.length === 0) return;
+
+  // Nếu người dùng tắt animation, hiển thị nội dung ngay lập tức.
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    targets.forEach((el) => el.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries, currentObserver) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // Thêm class để kích hoạt hiệu ứng CSS
-        entry.target.classList.add("is-visible");
-        // Sau khi hiện thì ngừng theo dõi để tiết kiệm tài nguyên [5]
-        observer.unobserve(entry.target);
-      }
+      if (!entry.isIntersecting) return;
+
+      entry.target.classList.add("is-visible");
+      currentObserver.unobserve(entry.target);
     });
   }, { threshold: 0.1 });
 
-  // Tìm các phần tử cần hiệu ứng (ví dụ: các thẻ card hoặc section)
-  const items = document.querySelectorAll(".card, .section > div");
-  items.forEach((el) => observer.observe(el));
+  targets.forEach((el) => observer.observe(el));
 }

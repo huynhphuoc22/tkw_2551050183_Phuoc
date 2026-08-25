@@ -75,3 +75,56 @@
            dark:border-line-invert dark:bg-slate-900 dark:text-white;
   }
 }
+/* Buổi 5: trạng thái lỗi dùng chung cho form */
+.field-input[aria-invalid="true"],
+input[aria-invalid="true"],
+select[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border-color: rgb(239 68 68);
+  outline: 2px solid rgb(239 68 68 / 0.2);
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Buổi 5: focus-visible rõ ràng khi điều hướng bằng bàn phím */
+:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+
+/* Hiệu ứng reveal: mặc định nội dung vẫn hiển thị nếu JavaScript lỗi.
+   Chỉ ẩn khi JS đã xác nhận hệ thống reveal hoạt động. */
+html.js-ready .reveal {
+  opacity: 0;
+  transform: translateY(2.5rem);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+html.js-ready .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html.js-ready .reveal.delay-200 {
+  transition-delay: 200ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js-ready .reveal,
+  html.js-ready .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
