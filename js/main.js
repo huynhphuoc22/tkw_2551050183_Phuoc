@@ -4,6 +4,8 @@ import { initFaq } from "./faq.js";
 import { initPricing } from "./pricing.js";
 import { initSlider } from "./slider.js";
 import { initReveal } from "./reveal.js";
+import { initApp } from "./app.js";
+import { initContactForm } from "./contact.js";
 
 
 initNav();           // 1. Menu Mobile
@@ -14,3 +16,7 @@ initFaq();           // 3. Accordion FAQ
 initPricing();       // 5. Công tắc giá Tháng/Năm
 initSlider();        // 6. Slider cảm nhận khách hàng
 initReveal();        // 7. Hiệu ứng lộ dần khi cuộn
+
+// 8. Chỉ khởi tạo module khi trang có đúng thành phần tương ứng.
+initApp();
+initContactForm();

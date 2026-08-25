@@ -1,23 +1,25 @@
 export function initReveal() {
-  // Thoát ngay lập tức nếu người dùng bật chế độ giảm chuyển động trong hệ thống [13]
+  // Đánh dấu JS đã sẵn sàng để hiệu ứng reveal được kích hoạt.
+  document.documentElement.classList.add("js-ready");
+
+  const targets = document.querySelectorAll(".reveal");
+
+  if (targets.length === 0) return;
+
+  // Nếu người dùng tắt animation, hiển thị nội dung ngay lập tức.
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    document.querySelectorAll(".card, section > div").forEach((el) => {
-      el.classList.add("is-visible");
-    });
+    targets.forEach((el) => el.classList.add("is-visible"));
     return;
   }
 
-  const observer = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver((entries, currentObserver) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target); [15]
-      }
+      if (!entry.isIntersecting) return;
+
+      entry.target.classList.add("is-visible");
+      currentObserver.unobserve(entry.target);
     });
   }, { threshold: 0.1 });
 
-  // Theo dõi các khối phần tử cần hiển thị mượt mà
-  document.querySelectorAll(".card, section > div").forEach((el) => {
-    observer.observe(el);
-  });
+  targets.forEach((el) => observer.observe(el));
 }

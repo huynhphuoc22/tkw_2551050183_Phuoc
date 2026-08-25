@@ -14,14 +14,8 @@
   <!-- Kết nối tới file CSS sau khi build -->
   <link rel="stylesheet" href="./dist/output.css" />
   
-  <!-- Script inline chống nháy trắng Dark mode (Bắt buộc theo Buổi 4) -->
-  <script>
-    (function () {
-      const saved = localStorage.getItem("theme");
-      const dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-      document.documentElement.classList.toggle("dark", dark);
-    })();
-  </script>
+  <script type="module" src="./js/theme-init.js"></script>
+
 </head>
 <body class="bg-surface font-body text-ink antialiased dark:bg-surface-dark dark:text-ink-invert">
   
@@ -93,7 +87,7 @@
     
     <!-- 2. SECTION HERO -->
     <section class="section grid items-center gap-14 lg:grid-cols-2 lg:gap-16" aria-labelledby="hero-title">
-      <div class="transition-all duration-700 opacity-0 translate-y-10">
+      <div class="reveal">
         <p class="eyebrow">Quản lý tài chính cá nhân & gia đình</p>
         <h1 id="hero-title" class="mt-4 font-display text-4xl font-extrabold leading-[1.15] text-ink sm:text-5xl dark:text-white">
           Nắm rõ thu chi.<br />
@@ -112,7 +106,7 @@
       </div>
 
       <!-- Khung Demo Báo Cáo Thu Chi -->
-      <div class="card mx-auto w-full max-w-md bg-slate-50/50 dark:bg-surface-dark-alt transition-all duration-700 opacity-0 translate-y-10 delay-200">
+      <div class="card mx-auto w-full max-w-md bg-slate-50/50 dark:bg-surface-dark-alt reveal delay-200">
         <div class="flex items-start justify-between">
           <div>
             <p class="text-xs font-semibold uppercase tracking-widest text-muted">Báo cáo tháng 8</p>
@@ -163,7 +157,7 @@
 
     <!-- 4. SECTION TÍNH NĂNG CHÍNH -->
     <section id="tinh-nang" class="section" aria-labelledby="tinh-nang-title">
-      <div class="mx-auto max-w-2xl text-center transition-all duration-700 opacity-0 translate-y-10">
+      <div class="mx-auto max-w-2xl text-center reveal">
         <p class="eyebrow">Tính năng nổi bật</p>
         <h2 id="tinh-nang-title" class="mt-3 font-display text-3xl font-extrabold text-ink sm:text-4xl dark:text-white">
           Ba công cụ cốt lõi giúp bạn làm chủ đồng tiền
@@ -171,17 +165,17 @@
         <p class="mt-3 text-muted">Loại bỏ các thao tác phức tạp, tập trung vào việc tạo thói quen chi tiêu thông minh.</p>
       </div>
       <ul class="mt-12 grid gap-8 md:grid-cols-3">
-        <li class="card transition-all duration-700 opacity-0 translate-y-10 delay-100">
+        <li class="card reveal delay-100">
           <div class="mb-6 grid h-12 w-12 place-items-center rounded-xl bg-brand-50 font-bold text-xl text-brand-600 dark:bg-brand-950/50 dark:text-brand-400">⚡</div>
           <h3 class="font-display text-xl font-bold text-ink dark:text-white">Ghi chép siêu tốc</h3>
           <p class="mt-3 leading-relaxed text-muted dark:text-slate-300">Nhập khoản chi chỉ trong 3 giây. Phân loại tự động theo Tiền chợ, Hóa đơn, Giải trí hay Con cái.</p>
         </li>
-        <li class="card transition-all duration-700 opacity-0 translate-y-10 delay-200">
+        <li class="card reveal delay-200">
           <div class="mb-6 grid h-12 w-12 place-items-center rounded-xl bg-brand-50 font-bold text-xl text-brand-600 dark:bg-brand-950/50 dark:text-brand-400">👥</div>
           <h3 class="font-display text-xl font-bold text-ink dark:text-white">Ví chung & Chia tiền</h3>
           <p class="mt-3 leading-relaxed text-muted dark:text-slate-300">Tạo ví dùng chung cho vợ chồng hoặc quỹ nhóm. Tự động tính toán và chia sòng phẳng sau mỗi chuyến đi.</p>
         </li>
-        <li class="card transition-all duration-700 opacity-0 translate-y-10 delay-300">
+        <li class="card reveal delay-300">
           <div class="mb-6 grid h-12 w-12 place-items-center rounded-xl bg-brand-50 font-bold text-xl text-brand-600 dark:bg-brand-950/50 dark:text-brand-400">📊</div>
           <h3 class="font-display text-xl font-bold text-ink dark:text-white">Phân tích & Cảnh báo</h3>
           <p class="mt-3 leading-relaxed text-muted dark:text-slate-300">Biểu đồ trực quan so sánh giữa các tháng. Tự động cảnh báo khi một danh mục sắp vượt hạn mức đề ra.</p>
@@ -217,7 +211,7 @@
 
     <!-- 6. SECTION CẢM NHẬN (Slider Viết Tay Buổi 4) -->
     <section id="cam-nhan" class="section" aria-labelledby="camnhan-title">
-      <div class="mx-auto max-w-2xl text-center transition-all duration-700 opacity-0 translate-y-10">
+      <div class="mx-auto max-w-2xl text-center reveal">
         <p class="eyebrow">Ý kiến khách hàng</p>
         <h2 id="camnhan-title" class="mt-3 font-display text-3xl font-extrabold text-ink sm:text-4xl dark:text-white">
           Người dùng nói gì về VíThôngMinh?
@@ -225,7 +219,7 @@
       </div>
 
       <!-- Container chính của Slider -->
-      <div data-slider class="relative overflow-hidden mt-12 max-w-3xl mx-auto transition-all duration-700 opacity-0 translate-y-10 delay-100">
+      <div data-slider class="relative overflow-hidden mt-12 max-w-3xl mx-auto reveal delay-100">
         <!-- Track dịch chuyển Slider bằng JS (sử dụng translateX) -->
         <div data-slider-track class="flex transition-transform duration-500 ease-in-out">
           
@@ -286,7 +280,7 @@
     <!-- 7. SECTION BẢNG GIÁ (Với Công tắc gạt chu kỳ Tháng/Năm) -->
     <section id="bang-gia" class="section border-y border-line bg-slate-50/70 py-20 dark:border-line-invert dark:bg-surface-dark-alt/20" aria-labelledby="gia-title">
       <div class="mx-auto max-w-6xl px-5">
-        <div class="mx-auto max-w-2xl text-center transition-all duration-700 opacity-0 translate-y-10">
+        <div class="mx-auto max-w-2xl text-center reveal">
           <p class="eyebrow">Bảng giá minh bạch</p>
           <h2 id="gia-title" class="mt-4 text-3xl font-extrabold text-ink sm:text-4xl dark:text-white">
             Lựa chọn gói phù hợp với nhu cầu
@@ -296,8 +290,8 @@
           <!-- Công tắc gạt (Switch) -->
           <div class="flex items-center justify-center gap-4 mt-8">
             <span class="text-sm font-semibold text-muted dark:text-slate-300">Thanh toán hàng tháng</span>
-            <button role="switch" aria-checked="false" id="price-switch" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-slate-200 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2 dark:bg-slate-700 dark:focus:ring-brand-500 aria-checked:bg-brand-600 dark:aria-checked:bg-brand-500" aria-label="Đổi đơn vị chu kỳ tính giá">
-              <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out translate-x-0 aria-checked:translate-x-5"></span>
+            <button role="switch" aria-checked="false" id="price-switch" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-slate-200 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2 dark:bg-slate-700 dark:focus:ring-brand-500" aria-label="Đổi đơn vị chu kỳ tính giá">
+              <span class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out translate-x-0"></span>
             </button>
             <span class="text-sm font-semibold text-muted dark:text-slate-300">Thanh toán theo năm <span class="rounded bg-brand-100 text-brand-700 px-1.5 py-0.5 text-xs dark:bg-brand-950 dark:text-brand-400">Tiết kiệm 20%</span></span>
           </div>
@@ -305,7 +299,7 @@
 
         <ul class="mt-14 grid items-stretch gap-6 md:grid-cols-3">
           <!-- Gói Cá nhân (Miễn phí) -->
-          <li class="card flex h-full flex-col justify-between transition-all duration-700 opacity-0 translate-y-10 delay-100">
+          <li class="card flex h-full flex-col justify-between reveal delay-100">
             <div class="flex-1 flex flex-col">
               <h3 class="font-display text-xl font-bold text-ink dark:text-white">Cá nhân</h3>
               <p class="mt-1 text-sm text-muted">Dành cho người mới bắt đầu.</p>
@@ -320,14 +314,14 @@
           </li>
 
           <!-- Gói Gia đình -->
-          <li class="card flex h-full flex-col justify-between ring-2 ring-brand-600 dark:ring-brand-500 relative transition-all duration-700 opacity-0 translate-y-10 delay-200">
+          <li class="card flex h-full flex-col justify-between ring-2 ring-brand-600 dark:ring-brand-500 relative reveal delay-200">
             <span class="absolute -top-3 left-6 rounded-full bg-brand-600 text-white px-3 py-1 text-xs font-semibold dark:bg-brand-500">Phổ biến nhất</span>
             <div class="flex-1 flex flex-col">
               <h3 class="font-display text-xl font-bold text-ink dark:text-white">Gia đình</h3>
               <p class="mt-1 text-sm text-muted">Dành cho vợ chồng cùng quản lý.</p>
               <p class="mt-6 font-display text-4xl font-extrabold text-ink dark:text-white">
                 <span data-price data-monthly="49000" data-yearly="470400">49.000 ₫</span>
-                <span class="text-sm font-normal text-muted">/tháng</span>
+                <span data-billing-period class="text-sm font-normal text-muted">/tháng</span>
               </p>
               <ul class="mt-6 space-y-3 text-sm text-muted dark:text-slate-300 border-t border-line dark:border-line-invert pt-6">
                 <li class="flex items-center gap-2"><span class="text-emerald-500">✔</span> Tối đa 10 thành viên</li>
@@ -340,13 +334,13 @@
           </li>
 
           <!-- Gói Nhóm & Cửa hàng -->
-          <li class="card flex h-full flex-col justify-between transition-all duration-700 opacity-0 translate-y-10 delay-300">
+          <li class="card flex h-full flex-col justify-between reveal delay-300">
             <div class="flex-1 flex flex-col">
               <h3 class="font-display text-xl font-bold text-ink dark:text-white">Nhóm & Cửa hàng</h3>
               <p class="mt-1 text-sm text-muted">Dành cho nhóm bạn đi chơi/kinh doanh.</p>
               <p class="mt-6 font-display text-4xl font-extrabold text-ink dark:text-white">
                 <span data-price data-monthly="99000" data-yearly="950400">99.000 ₫</span>
-                <span class="text-sm font-normal text-muted">/tháng</span>
+                <span data-billing-period class="text-sm font-normal text-muted">/tháng</span>
               </p>
               <ul class="mt-6 space-y-3 text-sm text-muted dark:text-slate-300 border-t border-line dark:border-line-invert pt-6">
                 <li class="flex items-center gap-2"><span class="text-emerald-500">✔</span> Tối đa 20 thành viên</li>
@@ -363,14 +357,14 @@
 
     <!-- 8. SECTION CÂU HỎI THƯỜNG GẶP (Accordion) -->
     <section id="cau-hoi" class="section" aria-labelledby="faq-title">
-      <div class="mx-auto max-w-2xl text-center transition-all duration-700 opacity-0 translate-y-10">
+      <div class="mx-auto max-w-2xl text-center reveal">
         <p class="eyebrow">Giải đáp thắc mắc</p>
         <h2 id="faq-title" class="mt-3 font-display text-3xl font-extrabold text-ink sm:text-4xl dark:text-white">
           Câu hỏi thường gặp
         </h2>
       </div>
 
-      <dl id="faq-list" class="mx-auto mt-12 max-w-3xl space-y-6 transition-all duration-700 opacity-0 translate-y-10 delay-100">
+      <dl id="faq-list" class="mx-auto mt-12 max-w-3xl space-y-6 reveal delay-100">
         
         <!-- Câu hỏi 1 -->
         <div class="card p-0 overflow-hidden">
@@ -422,28 +416,28 @@
 
     <!-- SECTION MỚI KHÔNG CÓ TRONG FIGMA -->
     <section id="huong-dan" class="section border-t border-line dark:border-line-invert" aria-labelledby="huong-dan-title">
-      <div class="mx-auto max-w-2xl text-center transition-all duration-700 opacity-0 translate-y-10">
+      <div class="mx-auto max-w-2xl text-center reveal">
         <p class="eyebrow">Khởi đầu dễ dàng</p>
         <h2 id="huong-dan-title" class="mt-3 font-display text-3xl font-extrabold text-ink sm:text-4xl dark:text-white">
           3 bước để làm chủ tài chính
         </h2>
       </div>
       <ol class="mt-12 grid gap-8 md:grid-cols-3">
-        <li class="relative transition-all duration-700 opacity-0 translate-y-10 delay-100">
+        <li class="relative reveal delay-100">
           <span class="font-display text-6xl font-black text-slate-100 dark:text-slate-800 absolute -top-6 -left-2 z-0" aria-hidden="true">01</span>
           <div class="relative z-10">
             <h3 class="font-display text-xl font-bold text-brand-600 dark:text-brand-500">Tải ứng dụng</h3>
             <p class="mt-2 text-muted text-sm dark:text-slate-300">Cài đặt VíThôngMinh miễn phí trên App Store hoặc Google Play chỉ trong 1 phút.</p>
           </div>
         </li>
-        <li class="relative transition-all duration-700 opacity-0 translate-y-10 delay-200">
+        <li class="relative reveal delay-200">
           <span class="font-display text-6xl font-black text-slate-100 dark:text-slate-800 absolute -top-6 -left-2 z-0" aria-hidden="true">02</span>
           <div class="relative z-10">
             <h3 class="font-display text-xl font-bold text-brand-600 dark:text-brand-500">Thiết lập ví</h3>
             <p class="mt-2 text-muted text-sm dark:text-slate-300">Tạo các hũ chi tiêu: Tiền chợ, Tiền học, Tiết kiệm... theo nhu cầu cá nhân.</p>
           </div>
         </li>
-        <li class="relative transition-all duration-700 opacity-0 translate-y-10 delay-300">
+        <li class="relative reveal delay-300">
           <span class="font-display text-6xl font-black text-slate-100 dark:text-slate-800 absolute -top-6 -left-2 z-0" aria-hidden="true">03</span>
           <div class="relative z-10">
             <h3 class="font-display text-xl font-bold text-brand-600 dark:text-brand-500">Ghi chép & Tối ưu</h3>
@@ -455,7 +449,7 @@
 
     <!-- 9. SECTION CALL TO ACTION -->
     <section id="cta" class="section" aria-labelledby="cta-title">
-      <div class="rounded-3xl bg-brand-600 p-8 text-center text-white shadow-xl sm:p-12 dark:bg-brand-900 transition-all duration-700 opacity-0 translate-y-10">
+      <div class="rounded-3xl bg-brand-600 p-8 text-center text-white shadow-xl sm:p-12 dark:bg-brand-900 reveal">
         <h2 id="cta-title" class="font-display text-3xl font-extrabold text-white sm:text-4xl">
           Bắt đầu kiểm soát tài chính của bạn ngay hôm nay
         </h2>
