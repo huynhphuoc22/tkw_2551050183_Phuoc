@@ -136,7 +136,7 @@ Trước khi nộp cần kiểm tra:
 
 ## 8. Demo
 
-**Link demo:** Chưa cập nhật.
+https://vithongminh.netlify.app/
 
 
 
